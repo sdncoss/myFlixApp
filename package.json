@@ -1,8 +1,13 @@
 {
   "name": "myflixapp",
   "version": "1.0.0",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "react-scripts start"
+    "start": "parcel",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build --no-optimize",
+    "deploy": "netlify deploy"
   },
   "author": "",
   "license": "ISC",
