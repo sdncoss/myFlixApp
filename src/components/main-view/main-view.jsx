@@ -63,11 +63,11 @@ export const MainView = () => {
       <Row className="justify-content-md-center">
         <Routes>
           <Route
-            path="/movies"
+            path="/"
             element={
               <>
                 {user ? (
-                  <Navigate to="/" />
+                  <Navigate to="signup/" />
                 ) : (
                   <Col md={5}>
                     <SignupView />
@@ -77,11 +77,11 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies"
+            path="/"
             element={
               <>
                 {user ? (
-                  <Navigate to="/" />
+                  <Navigate to="/login" />
                 ) : (
                   <Col md={5}>
                     <LoginView onLoggedIn={(user) => setUser(user)} />
@@ -91,7 +91,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies/:movieId"
+            path="/movies"
             element={
               <>
                 {!user ? (
@@ -107,7 +107,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/"
+            path="/movies/:movieId"
             element={
               <>
                 {!user ? (
@@ -130,7 +130,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/users/:Username"
+            path="/users/:username"
             element={
               <>
                 {!user ? (
