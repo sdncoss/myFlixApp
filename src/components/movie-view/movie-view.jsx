@@ -5,28 +5,28 @@ import PropTypes from "prop-types";
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
 
-  const movie = movies.find((m) => m.id === movieId);
+  const movie = movies.find((m) => m._id === movieId);
 
   return (
     <div>
       <div>
-        <img src={movie.image} className="img-fluid  justify-content-md-center" alt="Movie Poster" />
+        <img src={movie.ImagePath} className="img-fluid  justify-content-md-center" alt="Movie Poster" />
       </div>
       <div>
         <span style={{ fontWeight: 'bold' }}>Title: </span>
-        <span style={{ fontWeight: 'bold' }}>{movie.title}</span>
+        <span style={{ fontWeight: 'bold' }}>{movie.Title}</span>
       </div>
       <div>
         <span>Description: </span>
-        <span>{movie.description}</span>
+        <span>{movie.Description}</span>
       </div>
       <div>
         <span>Genre: </span>
-        <span>{movie.genre}</span>
+        <span>{movie.Genre}</span>
       </div>
       <div>
         <span>Director: </span>
-        <span>{movie.director}</span>
+        <span>{movie.Director}</span>
       </div>
       <div>
         <span>Featured: </span>

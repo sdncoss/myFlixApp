@@ -34962,7 +34962,7 @@ const MovieCard = ({ movie, isFavorite })=>{
     const [delTitle, setDelTitle] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         const addToFavorites = ()=>{
-            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.title)}`, {
+            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.title)}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -34983,7 +34983,7 @@ const MovieCard = ({ movie, isFavorite })=>{
             });
         };
         const removeFromFavorites = ()=>{
-            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.username}/movies/${encodeURIComponent(movie.title)}`, {
+            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.title)}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -35019,14 +35019,14 @@ const MovieCard = ({ movie, isFavorite })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: `/movies/${encodeURIComponent(movie.id)}`,
+                to: `/movies/${encodeURIComponent(movie._id)}`,
                 className: "movie-view",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
                     className: "h-100",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                             variant: "top",
-                            src: movie.image,
+                            src: movie.ImagePath,
                             className: "object-fit-cover"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
@@ -35036,14 +35036,14 @@ const MovieCard = ({ movie, isFavorite })=>{
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                    children: movie.title
+                                    children: movie.Title
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
                                     lineNumber: 96,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
-                                    children: movie.genre
+                                    children: movie.Genre
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
                                     lineNumber: 97,
@@ -35097,13 +35097,13 @@ _c = MovieCard;
 MovieCard.propTypes = {
     isFavorite: (0, _propTypesDefault.default).bool.isRequired,
     movie: (0, _propTypesDefault.default).shape({
-        id: (0, _propTypesDefault.default).string.isRequired,
-        title: (0, _propTypesDefault.default).string.isRequired,
-        image: (0, _propTypesDefault.default).string.isRequired,
-        description: (0, _propTypesDefault.default).string,
-        genre: (0, _propTypesDefault.default).string,
-        director: (0, _propTypesDefault.default).string,
-        featured: (0, _propTypesDefault.default).bool
+        _id: (0, _propTypesDefault.default).string.isRequired,
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        ImagePath: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string,
+        Genre: (0, _propTypesDefault.default).string,
+        Director: (0, _propTypesDefault.default).string,
+        Featured: (0, _propTypesDefault.default).bool
     }).isRequired
 };
 var _c;
@@ -41826,12 +41826,12 @@ var _s = $RefreshSig$();
 const MovieView = ({ movies })=>{
     _s();
     const { movieId } = (0, _reactRouter.useParams)();
-    const movie = movies.find((m)=>m.id === movieId);
+    const movie = movies.find((m)=>m._id === movieId);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: movie.image,
+                    src: movie.ImagePath,
                     className: "img-fluid  justify-content-md-center",
                     alt: "Movie Poster"
                 }, void 0, false, {
@@ -41860,7 +41860,7 @@ const MovieView = ({ movies })=>{
                         style: {
                             fontWeight: "bold"
                         },
-                        children: movie.title
+                        children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 17,
@@ -41882,7 +41882,7 @@ const MovieView = ({ movies })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.description
+                        children: movie.Description
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 21,
@@ -41904,7 +41904,7 @@ const MovieView = ({ movies })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.genre
+                        children: movie.Genre
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 25,
@@ -41926,7 +41926,7 @@ const MovieView = ({ movies })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.director
+                        children: movie.Director
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 29,
