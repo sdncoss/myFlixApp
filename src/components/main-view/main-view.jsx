@@ -63,11 +63,11 @@ export const MainView = () => {
       <Row className="justify-content-md-center">
         <Routes>
           <Route
-            path="/"
+            path="/signup"
             element={
               <>
                 {user ? (
-                  <Navigate to="signup/" />
+                  <Navigate to="/" />
                 ) : (
                   <Col md={5}>
                     <SignupView />
@@ -77,11 +77,11 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/"
+            path="/login"
             element={
               <>
                 {user ? (
-                  <Navigate to="/login" />
+                  <Navigate to="/" />
                 ) : (
                   <Col md={5}>
                     <LoginView onLoggedIn={(user) => setUser(user)} />
