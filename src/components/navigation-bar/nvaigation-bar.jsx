@@ -7,7 +7,7 @@ import { SearchBar } from "../search-bar/search-bar";
 
 export const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut }) => {
   return (
-    <Navbar bg="Turquoise" expand="lg">
+    <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
           MyFlix

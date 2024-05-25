@@ -42759,7 +42759,7 @@ var _reactRouterDom = require("react-router-dom");
 var _searchBar = require("../search-bar/search-bar");
 const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
-        bg: "Turquoise",
+        bg: "light",
         expand: "lg",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
