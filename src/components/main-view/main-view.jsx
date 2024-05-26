@@ -107,7 +107,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies/:movieId"
+            path="/movies/:MovieId"
             element={
               <>
                 {!user ? (
@@ -130,7 +130,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/users/:username"
+            path="/users/:Username"
             element={
               <>
                 {!user ? (
