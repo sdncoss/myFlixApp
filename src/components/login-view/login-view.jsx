@@ -12,8 +12,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      username: username,
-      password: password
+      username: Username,
+      password: Password
     };
 
 
