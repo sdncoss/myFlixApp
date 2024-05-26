@@ -27690,8 +27690,8 @@ const LoginView = ({ onLoggedIn })=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            username: username,
-            password: password
+            username: Username,
+            password: Password
         };
         fetch("https://my-flix-db-975de3fb6719.herokuapp.com/login", {
             method: "POST",
