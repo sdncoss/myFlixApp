@@ -6,14 +6,14 @@ import PropTypes from "prop-types";
 
 
 export const LoginView = ({ onLoggedIn }) => {
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      username: Username,
-      password: Password
+      username: username,
+      password: password
     };
 
 
