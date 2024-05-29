@@ -12,8 +12,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      username: username,
-      password: password
+      Username: username,
+      Password: password
     };
 
 
@@ -26,10 +26,10 @@ export const LoginView = ({ onLoggedIn }) => {
     }).then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
-        if (data.username) {
-          localStorage.setItem("user", JSON.stringify(data.user));
+        if (data.Username) {
+          localStorage.setItem("user", JSON.stringify(data.Username));
           localStorage.setItem("token", data.token);
-          onLoggedIn(data.user, data.token);
+          onLoggedIn(data.Username, data.token);
         } else {
           alert("No such user");
         }
