@@ -6,14 +6,14 @@ import PropTypes from "prop-types";
 
 
 export const LoginView = ({ onLoggedIn }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      username: username,
-      password: password
+      Username: Username,
+      Password: Password
     };
 
 
@@ -26,10 +26,10 @@ export const LoginView = ({ onLoggedIn }) => {
     }).then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
-        if (data.username) {
+        if (data.Username) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
-          onLoggedIn(data.user, data.token);
+          onLoggedIn(data.Username, data.token);
         } else {
           alert("No such user");
         }
@@ -46,7 +46,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
-          value={username}
+          value={Username}
           placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -59,7 +59,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
-          value={password}
+          value={Password}
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4"
