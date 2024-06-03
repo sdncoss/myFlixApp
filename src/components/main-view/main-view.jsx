@@ -32,7 +32,7 @@ export const MainView = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Movie data", data)
-        const movieFromApi = data.map((movie) => {
+        const moviesFromApi = data.map((movie) => {
           return {
             id: movie._id,
             title: movie.Title,
@@ -43,7 +43,7 @@ export const MainView = () => {
             featured: movie.Featured,
           };
         });
-        setMovies(movieFromApi);
+        setMovies(moviesFromApi);
         setFilteredMovies(moviesFromApi);
       });
   }, [token]);
