@@ -53,7 +53,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
           <Form.Label>Birthdate:</Form.Label>
           <Form.Control
             type="date"
-            value={formData.birthday.slice(0, 10)}
+            value={formData.birthDate ? formData.birthday.slice(0, 10) : ""}
             onChange={(e) => handleUpdate(e)}
             required
           />
