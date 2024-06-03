@@ -27544,7 +27544,7 @@ const MovieCard = ({ movie, isFavorite })=>{
     const [delTitle, setDelTitle] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         const addToFavorites = ()=>{
-            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.title)}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -27565,7 +27565,7 @@ const MovieCard = ({ movie, isFavorite })=>{
             });
         };
         const removeFromFavorites = ()=>{
-            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+            fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.title)}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -27601,14 +27601,14 @@ const MovieCard = ({ movie, isFavorite })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: `/movies/${encodeURIComponent(movie._id)}`,
+                to: `/movies/${encodeURIComponent(movie.id)}`,
                 className: "movie-view",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
                     className: "h-100",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                             variant: "top",
-                            src: movie.ImagePath,
+                            src: movie.image,
                             className: "object-fit-cover"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
@@ -27618,14 +27618,14 @@ const MovieCard = ({ movie, isFavorite })=>{
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                    children: movie.Title
+                                    children: movie.title
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
                                     lineNumber: 96,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
-                                    children: movie.Genre
+                                    children: movie.genre
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
                                     lineNumber: 97,
