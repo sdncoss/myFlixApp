@@ -94,7 +94,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
           <Card.Img variant="top" src={movie.ImagePath} className="object-fit-cover" />
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
-            <Card.Text>{movie.Genre.Name}</Card.Text>
+            <Card.Text>{movie.Genre}</Card.Text>
           </Card.Body>
         </Card>
       </Link>
@@ -118,9 +118,13 @@ MovieCard.propTypes = {
     Description: PropTypes.string,
     Genre: PropTypes.shape({
       Name: PropTypes.string,
+      Description: PropTypes.string
     }),
     Director: PropTypes.shape({
       Name: PropTypes.string,
+      Bio: PropTypes.string,
+      Birthyear: PropTypes.string,
+      Deathyear: PropTypes.string
     }),
     Featured: PropTypes.bool
   }).isRequired,
