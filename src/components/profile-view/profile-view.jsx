@@ -14,7 +14,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
   const [password, setPassword] = useState(storedUser.password);
   const [birthday, setBirthdate] = useState(storedUser.birthDate);
   const [user, setUser] = useState();
-  const favoriteMovies = user === undefined ? [] : movies.filter(m => user.favoriteMovies.includes(m.title))
+  const favoriteMovies = user && user.favoriteMovies
+    ? movies.filter(m => user.favoriteMovies.includes(m.title))
+    : [];
 
   const formData = {
     Username: username,
