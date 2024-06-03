@@ -38,8 +38,8 @@ export const MainView = () => {
             title: movie.Title,
             image: movie.ImagePath,
             description: movie.Description,
-            director: movie.Director,
-            genre: movie.Genre,
+            director: movie.Director.Name,
+            genre: movie.Genre.Name,
             featured: movie.Featured,
           };
         });
@@ -94,12 +94,12 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies"
+            path="/"
             element={
               !user ? <Navigate to="/login" replace /> : (
-                movies.length === 0 ? <Col>The list is empty!</Col> : (
+                filteredMovies.length === 0 ? <Col>The list is empty!</Col> : (
                   <Row>
-                    {movies.map((movie) => (
+                    {filteredMovies.map((movie) => (
                       <Col className="mb-5" key={movie.id} md={3} sm={12}>
                         <MovieCard
                           movie={movie}
