@@ -23,7 +23,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
           <Form.Control
             type="text"
             minLength={4}
-            value={formData.username}
+            value={data.username}
             onChange={(e) => handleUpdate(e)}
             required
           />
