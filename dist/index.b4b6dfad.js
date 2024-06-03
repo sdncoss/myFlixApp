@@ -42245,22 +42245,41 @@ var _updateUser = require("./update-user");
 var _s = $RefreshSig$();
 const ProfileView = ({ localUser, movies, token })=>{
     _s();
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const [username, setUsername] = (0, _react.useState)(storedUser.username);
-    const [email, setEmail] = (0, _react.useState)(storedUser.email);
-    const [password, setPassword] = (0, _react.useState)(storedUser.password);
-    const [birthDate, setBirthdate] = (0, _react.useState)(storedUser.birthDate);
-    const [user, setUser] = (0, _react.useState)();
-    const favoriteMovies = user === undefined ? [] : movies.filter((m)=>user.favoriteMovies.includes(m.title));
-    const formData = {
-        username: username,
-        email: email,
-        birthDate: birthDate,
-        password: password
+    const [user, setUser] = (0, _react.useState)(null); // Initialize user state as null
+    const [formData, setFormData] = (0, _react.useState)({
+        username: localUser.username,
+        email: localUser.email,
+        birthDate: localUser.birthDate,
+        password: ""
+    });
+    (0, _react.useEffect)(()=>{
+        if (!token) return;
+        fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${localUser.Username}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            if (!response.ok) throw new Error("Failed to fetch user data.");
+            return response.json();
+        }).then((userData)=>{
+            setUser(userData);
+        }).catch((error)=>{
+            console.error(error);
+        });
+    }, [
+        localUser.username,
+        token
+    ]);
+    const handleUpdate = (e)=>{
+        const { name, value } = e.target;
+        setFormData((prevData)=>({
+                ...prevData,
+                [name]: value
+            }));
     };
     const handleSubmit = (event)=>{
-        event.preventDefault(event);
-        fetch(`https://mj-movies-flix-036de76605bb.herokuapp.com/users/${user.username}`, {
+        event.preventDefault();
+        fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(formData),
             headers: {
@@ -42268,39 +42287,19 @@ const ProfileView = ({ localUser, movies, token })=>{
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            if (response.ok) {
-                alert("Update successful");
-                window.location.reload();
-                return response.json();
-            }
-            alert("Update failed");
-        }).then((user)=>{
-            if (user) {
-                localStorage.setItem("user", JSON.stringify(user));
-                setUser(user);
-            }
+            if (!response.ok) throw new Error("Failed to update user data.");
+            return response.json();
+        }).then((updatedUser)=>{
+            alert("Update successful");
+            setUser(updatedUser);
+            localStorage.setItem("user", JSON.stringify(updatedUser));
         }).catch((error)=>{
             console.error(error);
+            alert("Update failed");
         });
     };
-    const handleUpdate = (e)=>{
-        switch(e.target.type){
-            case "text":
-                setUsername(e.target.value);
-                break;
-            case "email":
-                setEmail(e.target.value);
-                break;
-            case "password":
-                setPassword(e.target.value);
-                break;
-            case "date":
-                setBirthdate(e.target.value);
-            default:
-        }
-    };
     const handleDeleteAccount = ()=>{
-        fetch(`https://mj-movies-flix-036de76605bb.herokuapp.com/users/${storedUser.username}`, {
+        fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -42311,35 +42310,12 @@ const ProfileView = ({ localUser, movies, token })=>{
                 alert("Account deleted successfully.");
                 localStorage.clear();
                 window.location.reload();
-            } else alert("Something went wrong.");
-        });
-    };
-    (0, _react.useEffect)(()=>{
-        if (!token) return;
-        fetch("https://my-flix-db-975de3fb6719.herokuapp.com/users/:Username", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>response.json()).then((data)=>{
-            console.log("Users data: ", data);
-            const usersFromApi = data.map((resultUser)=>{
-                return {
-                    id: resultUser._id,
-                    username: resultUser.username,
-                    password: resultUser.password,
-                    email: resultUser.email,
-                    birthDate: resultUser.birthDate,
-                    favoriteMovies: resultUser.favoriteMovies
-                };
-            });
-            setUser(usersFromApi.find((u)=>u.username === localUser.username));
-            console.log("Profile Saved User: " + JSON.stringify(user));
+            } else throw new Error("Failed to delete account.");
         }).catch((error)=>{
             console.error(error);
+            alert("Something went wrong.");
         });
-    }, [
-        token
-    ]);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -42349,35 +42325,34 @@ const ProfileView = ({ localUser, movies, token })=>{
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                    children: "My Profile  "
+                                    children: "My Profile"
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 127,
+                                    lineNumber: 105,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                                     children: user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(UserInfo, {
-                                        name: user.username,
-                                        email: user.email
+                                        user: user
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 130,
-                                        columnNumber: 26
+                                        lineNumber: 107,
+                                        columnNumber: 24
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 128,
+                                    lineNumber: 106,
                                     columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 126,
+                            lineNumber: 104,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 125,
+                        lineNumber: 103,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
@@ -42390,23 +42365,23 @@ const ProfileView = ({ localUser, movies, token })=>{
                                 handleDeleteAccount: handleDeleteAccount
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 137,
+                                lineNumber: 113,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 136,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 135,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 124,
+                lineNumber: 102,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -42414,32 +42389,32 @@ const ProfileView = ({ localUser, movies, token })=>{
                     className: "mb-5",
                     xs: 12,
                     md: 12,
-                    children: favoriteMovies && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userFavorites.FavoriteMovies), {
+                    children: user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userFavorites.FavoriteMovies), {
                         user: user,
-                        favoriteMovies: favoriteMovies
+                        movies: movies
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 149,
-                        columnNumber: 32
+                        lineNumber: 124,
+                        columnNumber: 20
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 147,
+                    lineNumber: 123,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 146,
+                lineNumber: 122,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 123,
+        lineNumber: 101,
         columnNumber: 5
     }, undefined);
 };
-_s(ProfileView, "Ax5MymCIWzlsf9LESKqu0IErh2w=");
+_s(ProfileView, "y4vMO264YnIW/n0hBB1slsBhGDI=");
 _c = ProfileView;
 ProfileView.propTypes = {
     localUser: (0, _propTypesDefault.default).object.isRequired,
