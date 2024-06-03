@@ -93,31 +93,18 @@ export const ProfileView = ({ localUser, movies, token }) => {
       return;
     }
 
-    fetch("https://my-flix-db-975de3fb6719.herokuapp.com/users/:Username", {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${localUser.username}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Users data: ", data);
-        const usersFromApi = data.map((resultUser) => {
-          return {
-            id: resultUser._id,
-            username: resultUser.username,
-            password: resultUser.password,
-            email: resultUser.email,
-            birthDate: resultUser.birthDate,
-            favoriteMovies: resultUser.favoriteMovies
-          };
-        });
-        setUser(usersFromApi.find((u) => u.username === localUser.username));
-
-        console.log("Profile Saved User: " + JSON.stringify(user));
-
+      .then((userData) => {
+        setUser(userData);
+        console.log("Profile Saved User: " + JSON.stringify(userData));
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [token]);
+  }, [localUser.username, token]);
 
   return (
     <Container >
