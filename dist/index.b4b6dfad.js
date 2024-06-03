@@ -42505,7 +42505,7 @@ const UserInfo = ({ email, name })=>{
     }, undefined);
 };
 _c = UserInfo;
-const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount })=>{
+const UpdateUser = ({ data, handleUpdate, handleSubmit, handleDeleteAccount })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
             onSubmit: handleSubmit,
@@ -42566,7 +42566,7 @@ const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount 
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             type: "password",
                             minLength: 8,
-                            value: formData.password,
+                            value: data.password,
                             onChange: (e)=>handleUpdate(e),
                             required: true
                         }, void 0, false, {
@@ -42592,7 +42592,7 @@ const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount 
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             type: "email",
-                            value: formData.email,
+                            value: data.email,
                             onChange: (e)=>handleUpdate(e),
                             required: true
                         }, void 0, false, {
@@ -42618,7 +42618,7 @@ const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount 
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             type: "date",
-                            value: formData.birthDate.slice(0, 10),
+                            value: data.birthday.slice(0, 10),
                             onChange: (e)=>handleUpdate(e),
                             required: true
                         }, void 0, false, {
@@ -42669,7 +42669,7 @@ UserInfo.propTypes = {
     name: (0, _propTypesDefault.default).string.isRequired
 };
 UpdateUser.propTypes = {
-    formData: (0, _propTypesDefault.default).object.isRequired,
+    data: (0, _propTypesDefault.default).object.isRequired,
     handleUpdate: (0, _propTypesDefault.default).func.isRequired,
     handleSubmit: (0, _propTypesDefault.default).func.isRequired,
     handleDeleteAccount: (0, _propTypesDefault.default).func.isRequired

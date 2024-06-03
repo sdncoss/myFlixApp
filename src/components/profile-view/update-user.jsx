@@ -13,7 +13,7 @@ export const UserInfo = ({ email, name }) => {
   )
 }
 
-export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount }) => {
+export const UpdateUser = ({ data, handleUpdate, handleSubmit, handleDeleteAccount }) => {
   return (
     <Row>
       <Form onSubmit={handleSubmit}>
@@ -35,7 +35,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
           <Form.Control
             type="password"
             minLength={8}
-            value={formData.password}
+            value={data.password}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -44,7 +44,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
           <Form.Label> Email: </Form.Label>
           <Form.Control
             type="email"
-            value={formData.email}
+            value={data.email}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -53,7 +53,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
           <Form.Label>Birthdate:</Form.Label>
           <Form.Control
             type="date"
-            value={formData.birthDate.slice(0, 10)}
+            value={data.birthday.slice(0, 10)}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -76,7 +76,7 @@ UserInfo.propTypes = {
 };
 
 UpdateUser.propTypes = {
-  formData: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   handleUpdate: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleDeleteAccount: PropTypes.func.isRequired
