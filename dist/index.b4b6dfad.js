@@ -27253,7 +27253,7 @@ var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
-var _nvaigationBar = require("../navigation-bar/nvaigation-bar");
+var _navigationBar = require("../navigation-bar/navigation-bar");
 var _profileView = require("../profile-view/profile-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
@@ -27309,7 +27309,7 @@ const MainView = ()=>{
     ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _nvaigationBar.NavigationBar), {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
                 user: user,
                 query: searchQuery,
                 handleSearch: handleSearch,
@@ -27517,7 +27517,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"2jNhl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Y45e","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../profile-view/profile-view":"2vVqf","../navigation-bar/nvaigation-bar":"9TCyK"}],"2jNhl":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"2jNhl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Y45e","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../profile-view/profile-view":"2vVqf","../navigation-bar/navigation-bar":"bsPVM"}],"2jNhl":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -42753,11 +42753,11 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","../movie-card/movie-card":"bwuIu","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"2jNhl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Y45e"}],"9TCyK":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$911a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","../movie-card/movie-card":"bwuIu","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"2jNhl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Y45e"}],"bsPVM":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$911a.prelude(module);
+$parcel$ReactRefreshHelpers$abf5.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -42780,14 +42780,14 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                     to: "/",
                     children: "MyFlix"
                 }, void 0, false, {
-                    fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
                     lineNumber: 12,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
                     "aria-controls": "basic-navbar-nav"
                 }, void 0, false, {
-                    fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
                     lineNumber: 15,
                     columnNumber: 9
                 }, undefined),
@@ -42804,7 +42804,7 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                                             to: "/login",
                                             children: "Login"
                                         }, void 0, false, {
-                                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                             lineNumber: 20,
                                             columnNumber: 17
                                         }, undefined),
@@ -42813,7 +42813,7 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                                             to: "/signup",
                                             children: "Signup"
                                         }, void 0, false, {
-                                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                             lineNumber: 23,
                                             columnNumber: 17
                                         }, undefined)
@@ -42826,7 +42826,7 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                                             to: "/",
                                             children: "Movies"
                                         }, void 0, false, {
-                                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                             lineNumber: 30,
                                             columnNumber: 17
                                         }, undefined),
@@ -42835,7 +42835,7 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                                             to: "/profile",
                                             children: "Profile"
                                         }, void 0, false, {
-                                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                             lineNumber: 33,
                                             columnNumber: 17
                                         }, undefined),
@@ -42843,7 +42843,7 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                                             onClick: onLoggedOut,
                                             children: "Logout"
                                         }, void 0, false, {
-                                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                             lineNumber: 36,
                                             columnNumber: 17
                                         }, undefined)
@@ -42851,7 +42851,7 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                                 }, void 0, true)
                             ]
                         }, void 0, true, {
-                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                             lineNumber: 17,
                             columnNumber: 11
                         }, undefined),
@@ -42868,49 +42868,49 @@ const NavigationBar = ({ user, movies, handleSearch, query, onLoggedOut })=>{
                                                 query: query,
                                                 movies: movies
                                             }, void 0, false, {
-                                                fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                                fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                                 lineNumber: 47,
                                                 columnNumber: 23
                                             }, void 0)
                                         }, void 0, false, {
-                                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                             lineNumber: 46,
                                             columnNumber: 21
                                         }, void 0)
                                     }, void 0, false, {
-                                        fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                         lineNumber: 45,
                                         columnNumber: 19
                                     }, void 0)
                                 }, void 0, false, {
-                                    fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                     lineNumber: 44,
                                     columnNumber: 17
                                 }, void 0)
                             }, void 0, false, {
-                                fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                                fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                 lineNumber: 41,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
-                            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
                             lineNumber: 40,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
-                    fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
                     lineNumber: 16,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
-            fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+            fileName: "src/components/navigation-bar/navigation-bar.jsx",
             lineNumber: 11,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
-        fileName: "src/components/navigation-bar/nvaigation-bar.jsx",
+        fileName: "src/components/navigation-bar/navigation-bar.jsx",
         lineNumber: 10,
         columnNumber: 5
     }, undefined);
@@ -42924,7 +42924,7 @@ NavigationBar.propTypes = {
 var _c;
 $RefreshReg$(_c, "NavigationBar");
 
-  $parcel$ReactRefreshHelpers$911a.postlude(module);
+  $parcel$ReactRefreshHelpers$abf5.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
