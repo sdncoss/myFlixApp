@@ -20,8 +20,11 @@ export const MainView = () => {
 
   useEffect(() => {
     if (!token) {
+      console.log("No token, skipping fetch.");
       return;
     }
+
+    console.log("Fetching movies with token:", token);
 
     fetch("https://my-flix-db-975de3fb6719.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` }
@@ -41,6 +44,7 @@ export const MainView = () => {
           };
         });
         setMovies(movieFromApi);
+        setFilteredMovies(moviesFromApi);
       });
   }, [token]);
 
@@ -48,14 +52,14 @@ export const MainView = () => {
     const query = e.target.value;
     setSearchQuery(query);
 
-    const filteredMovies = movies.filter((movie) => {
+    const filtered = movies.filter((movie) => {
       return (
         movie.title.toLowerCase().includes(query.toLowerCase()) ||
         movie.genre.toLowerCase().includes(query.toLowerCase()) ||
         movie.director.toLowerCase().includes(query.toLowerCase())
       );
     });
-    setFilteredMovies(filteredMovies);
+    setFilteredMovies(filtered);
   };
 
   useEffect(() => {
@@ -112,8 +116,8 @@ export const MainView = () => {
             path="/movies/:movieId"
             element={
               !user ? <Navigate to="/login" replace /> : (
-                movies.length === 0 ? <Col>The list is empty!</Col> : (
-                  <Col md={8}><MovieView movies={movies} /></Col>
+                filteredMovies.length === 0 ? <Col>The list is empty!</Col> : (
+                  <Col md={8}><MovieView movies={filteredMovies} /></Col>
                 )
               )
             }
@@ -123,7 +127,7 @@ export const MainView = () => {
             element={
               !user ? <Navigate to="/login" replace /> : (
                 <Col md={8}>
-                  <ProfileView localUser={user} movies={movies} token={token} />
+                  <ProfileView localUser={user} movies={filteredMovies} token={token} />
                 </Col>
               )
             }
