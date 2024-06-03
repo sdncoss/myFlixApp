@@ -123,7 +123,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/users/:Username"
+            path="/profile"
             element={
               !user ? <Navigate to="/login" replace /> : (
                 <Col md={8}>

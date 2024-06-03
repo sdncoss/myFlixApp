@@ -12,21 +12,21 @@ export const ProfileView = ({ localUser, movies, token }) => {
   const [username, setUsername] = useState(storedUser.username);
   const [email, setEmail] = useState(storedUser.email);
   const [password, setPassword] = useState(storedUser.password);
-  const [birthDate, setBirthdate] = useState(storedUser.birthDate);
+  const [birthday, setBirthdate] = useState(storedUser.birthDate);
   const [user, setUser] = useState();
   const favoriteMovies = user === undefined ? [] : movies.filter(m => user.favoriteMovies.includes(m.title))
 
-  const formData = {
-    username: username,
-    email: email,
-    birthDate: birthDate,
-    password: password
+  const data = {
+    Username: username,
+    Password: password,
+    Email: email,
+    Birthday: birthday
   };
   const handleSubmit = (event) => {
     event.preventDefault(event);
     fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}`, {
       method: "PUT",
-      body: JSON.stringify(formData),
+      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
@@ -97,10 +97,10 @@ export const ProfileView = ({ localUser, movies, token }) => {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
-      .then((userData) => {
-        setUser(userData);
-        console.log("User data fetched:", userData);
-        console.log("Profile Saved User: " + JSON.stringify(userData));
+      .then((data) => {
+        setUser(data);
+        console.log("User data fetched:", data);
+        console.log("Profile Saved User: " + JSON.stringify(data));
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
