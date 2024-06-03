@@ -15,6 +15,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
   useEffect(() => {
     if (!token) {
@@ -30,12 +31,12 @@ export const MainView = () => {
         const movieFromApi = data.map((movie) => {
           return {
             id: movie._id,
-            title: movie.title,
-            image: movie.imageurl,
-            description: movie.description,
-            director: movie.director,
-            genre: movie.genre,
-            featured: movie.featured,
+            title: movie.Title,
+            image: movie.ImagePath,
+            description: movie.Description,
+            director: movie.Director,
+            genre: movie.Genre,
+            featured: movie.Featured,
           };
         });
         setMovies(movieFromApi);
@@ -46,18 +47,19 @@ export const MainView = () => {
     const query = e.target.value;
     setSearchQuery(query);
 
-    //Filter/search movies by title, genry, director
-    const filterMovies = movies.filter((movie) => {
+    const filtered = movies.filter((movie) => {
       return (
-        movie.title.toLowerCase().includes(query.toLowerCase())
-        ||
-        movie.genre.toLowerCase().includes(query.toLowerCase())
-        ||
+        movie.title.toLowerCase().includes(query.toLowerCase()) ||
+        movie.genre.toLowerCase().includes(query.toLowerCase()) ||
         movie.director.toLowerCase().includes(query.toLowerCase())
       );
-    })
-    setMovies(filterMovies);
-  }
+    });
+    setFilteredMovies(filtered);
+  };
+
+  useEffect(() => {
+    setFilteredMovies(movies);
+  }, [movies]);
 
 
   return (
@@ -108,11 +110,11 @@ export const MainView = () => {
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
+                ) : filteredMovies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView movies={filteredMovies} />
                   </Col>
                 )}
               </>
@@ -129,7 +131,7 @@ export const MainView = () => {
                 ) : (
                   <>
                     {movies.map((movie) => (
-                      <Col className="mb-5" key={movie.id} md={3} sm={12}>
+                      <Col className="mb-5" key={movie._id} md={3} sm={12}>
                         <MovieCard
                           movie={movie}
                           isFavorite={user.favoriteMovies.includes(movie.title)}

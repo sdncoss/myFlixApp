@@ -4,8 +4,13 @@ import PropTypes from "prop-types";
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
-
+  //find movie by id
   const movie = movies.find((m) => m._id === movieId);
+
+  // Handle case where movie is not found
+  if (!movie) {
+    return <div>Movie not found</div>;
+  }
 
   return (
     <div>
@@ -40,10 +45,15 @@ export const MovieView = ({ movies }) => {
 };
 
 MovieView.propTypes = {
-  movies: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    genre: PropTypes.string,
-    director: PropTypes.string,
-  }).isRequired
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      genre: PropTypes.string.isRequired,
+      director: PropTypes.string.isRequired,
+      featured: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
 };
