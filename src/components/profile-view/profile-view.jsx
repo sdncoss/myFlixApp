@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FavoriteMovies } from './user-favorites';
 import { UpdateUser } from "./update-user";
-import { UserInfo } from "./user-info"; // Assuming you have a component to display user info
+
 
 export const ProfileView = ({ localUser, movies, token }) => {
   const [user, setUser] = useState(null); // Initialize user state as null
