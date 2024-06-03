@@ -16,7 +16,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
   useEffect(() => {
     const addToFavorites = () => {
       fetch(
-        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.title)}`,
+        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
         {
           method: "POST",
           headers: {
@@ -45,7 +45,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
     };
     const removeFromFavorites = () => {
       fetch(
-        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.title)}`,
+        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
         {
           method: "DELETE",
           headers: {
@@ -89,12 +89,12 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
   return (
     <>
-      <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="movie-view">
+      <Link to={`/movies/${encodeURIComponent(movie._id)}`} className="movie-view">
         <Card className="h-100" >
-          <Card.Img variant="top" src={movie.image} className="object-fit-cover" />
+          <Card.Img variant="top" src={movie.ImagePath} className="object-fit-cover" />
           <Card.Body>
-            <Card.Title>{movie.title}</Card.Title>
-            <Card.Text>{movie.genre}</Card.Text>
+            <Card.Title>{movie.Title}</Card.Title>
+            <Card.Text>{movie.Genre.Name}</Card.Text>
           </Card.Body>
         </Card>
       </Link>
@@ -116,8 +116,12 @@ MovieCard.propTypes = {
     Title: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
     Description: PropTypes.string,
-    Genre: PropTypes.string,
-    Director: PropTypes.string,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string,
+    }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string,
+    }),
     Featured: PropTypes.bool
   }).isRequired,
 };
