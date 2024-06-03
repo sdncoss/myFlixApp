@@ -127,7 +127,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         <Card className="mb-5">
           <Card.Body>
             <UpdateUser
-              data={data}
+              formData={data}
               handleUpdate={handleUpdate}
               handleSubmit={handleSubmit}
               handleDeleteAccount={handleDeleteAccount}
