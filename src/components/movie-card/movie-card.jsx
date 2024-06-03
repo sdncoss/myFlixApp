@@ -14,9 +14,10 @@ export const MovieCard = ({ movie, isFavorite }) => {
   const [delTitle, setDelTitle] = useState("");
 
   useEffect(() => {
+    console.log("Adding to favorites:", movie.id);
     const addToFavorites = () => {
       fetch(
-        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie._id)}`,
+        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
         {
           method: "POST",
           headers: {
@@ -45,7 +46,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
     };
     const removeFromFavorites = () => {
       fetch(
-        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie._id)}`,
+        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
         {
           method: "DELETE",
           headers: {
@@ -112,12 +113,12 @@ export const MovieCard = ({ movie, isFavorite }) => {
 MovieCard.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   movie: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    Title: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired,
-    Description: PropTypes.string,
-    Genre: PropTypes.string,
-    Director: PropTypes.string,
-    Featured: PropTypes.bool
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    genre: PropTypes.string,
+    director: PropTypes.string,
+    featured: PropTypes.bool
   }).isRequired,
 };
