@@ -42252,7 +42252,7 @@ const ProfileView = ({ localUser, movies, token })=>{
     const [birthday, setBirthdate] = (0, _react.useState)(storedUser.birthDate);
     const [user, setUser] = (0, _react.useState)();
     const favoriteMovies = user === undefined ? [] : movies.filter((m)=>user.favoriteMovies.includes(m.title));
-    const data = {
+    const formData = {
         Username: username,
         Password: password,
         Email: email,
@@ -42320,10 +42320,10 @@ const ProfileView = ({ localUser, movies, token })=>{
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((response)=>response.json()).then((data)=>{
-            setUser(data);
-            console.log("User data fetched:", data);
-            console.log("Profile Saved User: " + JSON.stringify(data));
+        }).then((response)=>response.json()).then((data1)=>{
+            setUser(data1);
+            console.log("User data fetched:", data1);
+            console.log("Profile Saved User: " + JSON.stringify(data1));
         }).catch((error)=>{
             console.error("Error fetching user data:", error);
         });
@@ -42380,7 +42380,7 @@ const ProfileView = ({ localUser, movies, token })=>{
                         className: "mb-5",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUser.UpdateUser), {
-                                formData: data,
+                                formData: formData,
                                 handleUpdate: handleUpdate,
                                 handleSubmit: handleSubmit,
                                 handleDeleteAccount: handleDeleteAccount
