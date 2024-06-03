@@ -13,7 +13,7 @@ export const UserInfo = ({ email, name }) => {
   )
 }
 
-export const UpdateUser = ({ data, handleUpdate, handleSubmit, handleDeleteAccount }) => {
+export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount }) => {
   return (
     <Row>
       <Form onSubmit={handleSubmit}>
@@ -23,7 +23,7 @@ export const UpdateUser = ({ data, handleUpdate, handleSubmit, handleDeleteAccou
           <Form.Control
             type="text"
             minLength={4}
-            value={data.username}
+            value={formData.username}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -35,7 +35,7 @@ export const UpdateUser = ({ data, handleUpdate, handleSubmit, handleDeleteAccou
           <Form.Control
             type="password"
             minLength={8}
-            value={data.password}
+            value={formData.password}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -44,7 +44,7 @@ export const UpdateUser = ({ data, handleUpdate, handleSubmit, handleDeleteAccou
           <Form.Label> Email: </Form.Label>
           <Form.Control
             type="email"
-            value={data.email}
+            value={formData.email}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -53,7 +53,7 @@ export const UpdateUser = ({ data, handleUpdate, handleSubmit, handleDeleteAccou
           <Form.Label>Birthdate:</Form.Label>
           <Form.Control
             type="date"
-            value={data.birthday.slice(0, 10)}
+            value={formData.birthDate.slice(0, 10)}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -76,7 +76,7 @@ UserInfo.propTypes = {
 };
 
 UpdateUser.propTypes = {
-  data: PropTypes.object.isRequired,
+  formData: PropTypes.object.isRequired,
   handleUpdate: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleDeleteAccount: PropTypes.func.isRequired
