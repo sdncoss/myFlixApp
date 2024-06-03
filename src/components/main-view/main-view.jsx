@@ -38,8 +38,8 @@ export const MainView = () => {
             title: movie.Title,
             image: movie.ImagePath,
             description: movie.Description,
-            director: movie.Director.Name,
-            genre: movie.Genre.Name,
+            director: movie.Director?.Name || 'Unknown Director', // Safe access with fallback
+            genre: movie.Genre?.Name || 'Unknown Genre', // Safe access with fallback
             featured: movie.Featured,
           };
         });
