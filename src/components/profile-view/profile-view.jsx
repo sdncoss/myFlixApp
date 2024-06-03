@@ -99,12 +99,17 @@ export const ProfileView = ({ localUser, movies, token }) => {
       .then((response) => response.json())
       .then((userData) => {
         setUser(userData);
+        console.log("User data fetched:", userData);
         console.log("Profile Saved User: " + JSON.stringify(userData));
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error fetching user data:", error);
       });
   }, [localUser.username, token]);
+
+  useEffect(() => {
+    console.log("User state:", user); // Add this log
+  }, [user]);
 
   return (
     <Container >
