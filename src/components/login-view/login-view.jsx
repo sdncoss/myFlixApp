@@ -6,14 +6,15 @@ import PropTypes from "prop-types";
 
 
 export const LoginView = ({ onLoggedIn }) => {
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      Username: Username,
-      Password: Password
+      Username: username,
+      Password: password
     };
 
 
@@ -35,8 +36,11 @@ export const LoginView = ({ onLoggedIn }) => {
         }
       })
       .catch((e) => {
-        console.error("Login error: ", e);
-        alert("Something went wrong");
+        console.error("Login error: ", e.message);
+        if (error.response) {
+          console.error("Server responded with.", error.response.data);
+        }
+        alert("Something went wrong " + e.message);
       });
   }
 
@@ -46,7 +50,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
-          value={Username}
+          value={username}
           placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -59,7 +63,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
-          value={Password}
+          value={password}
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4"
