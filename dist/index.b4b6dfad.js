@@ -42380,7 +42380,7 @@ const ProfileView = ({ localUser, movies, token })=>{
                         className: "mb-5",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUser.UpdateUser), {
-                                formData: formData,
+                                data: data,
                                 handleUpdate: handleUpdate,
                                 handleSubmit: handleSubmit,
                                 handleDeleteAccount: handleDeleteAccount
