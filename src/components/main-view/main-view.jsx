@@ -15,7 +15,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredMovies, setFilteredMovies] = useState([]);
+
 
   useEffect(() => {
     if (!token) {
@@ -47,14 +47,14 @@ export const MainView = () => {
     const query = e.target.value;
     setSearchQuery(query);
 
-    const filtered = movies.filter((movie) => {
+    const filteredMovies = movies.filter((movie) => {
       return (
         movie.title.toLowerCase().includes(query.toLowerCase()) ||
         movie.genre.toLowerCase().includes(query.toLowerCase()) ||
         movie.director.toLowerCase().includes(query.toLowerCase())
       );
     });
-    setFilteredMovies(filtered);
+    setFilteredMovies(filteredMovies);
   };
 
   useEffect(() => {
@@ -79,86 +79,52 @@ export const MainView = () => {
           <Route
             path="/signup"
             element={
-              <>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <SignupView />
-                  </Col>
-                )}
-              </>
+              user ? <Navigate to="/" /> : <Col md={5}><SignupView /></Col>
             }
           />
           <Route
             path="/login"
             element={
-              <>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
-                  </Col>
-                )}
-              </>
+              user ? <Navigate to="/" /> : <Col md={5}><LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} /></Col>
             }
           />
           <Route
             path="/movies"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : filteredMovies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <Col md={8}>
-                    <MovieView movies={filteredMovies} />
-                  </Col>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/movies/:MovieId"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
+              !user ? <Navigate to="/login" replace /> : (
+                movies.length === 0 ? <Col>The list is empty!</Col> : (
+                  <Row>
                     {movies.map((movie) => (
-                      <Col className="mb-5" key={movie._id} md={3} sm={12}>
+                      <Col className="mb-5" key={movie.id} md={3} sm={12}>
                         <MovieCard
                           movie={movie}
-                          isFavorite={user.favoriteMovies.includes(movie.title)}
+                          isFavorite={user.favoriteMovies && Array.isArray(user.favoriteMovies) && user.favoriteMovies.includes(movie.title)}
                         />
                       </Col>
                     ))}
-                  </>
-                )}
-              </>
+                  </Row>
+                )
+              )
+            }
+          />
+          <Route
+            path="/movies/:movieId"
+            element={
+              !user ? <Navigate to="/login" replace /> : (
+                movies.length === 0 ? <Col>The list is empty!</Col> : (
+                  <Col md={8}><MovieView movies={movies} /></Col>
+                )
+              )
             }
           />
           <Route
             path="/users/:Username"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : (
-                  <Col md={8}>
-                    <ProfileView
-                      localUser={user}
-                      movies={movies}
-                      token={token}
-                    />
-                  </Col>
-                )}
-              </>
+              !user ? <Navigate to="/login" replace /> : (
+                <Col md={8}>
+                  <ProfileView localUser={user} movies={movies} token={token} />
+                </Col>
+              )
             }
           />
         </Routes>
