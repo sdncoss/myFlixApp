@@ -15,23 +15,23 @@ export const MovieView = ({ movies }) => {
   return (
     <div>
       <div>
-        <img src={movie.ImagePath} className="img-fluid  justify-content-md-center" alt="Movie Poster" />
+        <img src={movie.image} className="img-fluid  justify-content-md-center" alt="Movie Poster" />
       </div>
       <div>
         <span style={{ fontWeight: 'bold' }}>Title: </span>
-        <span style={{ fontWeight: 'bold' }}>{movie.Title}</span>
+        <span style={{ fontWeight: 'bold' }}>{movie.title}</span>
       </div>
       <div>
         <span>Description: </span>
-        <span>{movie.Description}</span>
+        <span>{movie.description}</span>
       </div>
       <div>
         <span>Genre: </span>
-        <span>{movie.Genre}</span>
+        <span>{movie.genre}</span>
       </div>
       <div>
         <span>Director: </span>
-        <span>{movie.Director}</span>
+        <span>{movie.director}</span>
       </div>
       <div>
         <span>Featured: </span>
