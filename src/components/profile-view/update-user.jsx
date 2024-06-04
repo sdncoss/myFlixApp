@@ -4,10 +4,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 
-export const UserInfo = ({ email, name }) => {
+export const UserInfo = ({ email, username }) => {
   return (
     <div>
-      <p>Username: {name} </p>
+      <p>Username: {username} </p>
       <p>Email: {email} </p>
     </div>
   )
