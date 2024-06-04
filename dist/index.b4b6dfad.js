@@ -42474,7 +42474,7 @@ const UserInfo = ({ email, username })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Username: ",
-                    username,
+                    username.username,
                     " "
                 ]
             }, void 0, true, {
@@ -42485,7 +42485,7 @@ const UserInfo = ({ email, username })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Email: ",
-                    email,
+                    username.email,
                     " "
                 ]
             }, void 0, true, {
