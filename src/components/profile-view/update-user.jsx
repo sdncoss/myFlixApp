@@ -7,8 +7,8 @@ import Row from 'react-bootstrap/Row'
 export const UserInfo = ({ email, username }) => {
   return (
     <div>
-      <p>Username: {user.username} </p>
-      <p>Email: {user.email} </p>
+      <p>Username: {username} </p>
+      <p>Email: {email} </p>
     </div>
   )
 }
@@ -53,7 +53,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
           <Form.Label>Birthdate:</Form.Label>
           <Form.Control
             type="date"
-            value={formData.birthDate ? formData.birthday.slice(0, 10) : ""}
+            value={formData.birthday ? formData.birthday.slice(0, 10) : ""}
             onChange={(e) => handleUpdate(e)}
             required
           />
@@ -72,7 +72,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
 
 UserInfo.propTypes = {
   email: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  username: PropTypes.string.isRequired
 };
 
 UpdateUser.propTypes = {

@@ -42577,7 +42577,7 @@ const UserInfo = ({ email, username })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Username: ",
-                    user.username,
+                    username,
                     " "
                 ]
             }, void 0, true, {
@@ -42588,7 +42588,7 @@ const UserInfo = ({ email, username })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Email: ",
-                    user.email,
+                    email,
                     " "
                 ]
             }, void 0, true, {
@@ -42717,7 +42717,7 @@ const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount 
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             type: "date",
-                            value: formData.birthDate ? formData.birthday.slice(0, 10) : "",
+                            value: formData.birthday ? formData.birthday.slice(0, 10) : "",
                             onChange: (e)=>handleUpdate(e),
                             required: true
                         }, void 0, false, {
@@ -42765,7 +42765,7 @@ const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount 
 _c1 = UpdateUser;
 UserInfo.propTypes = {
     email: (0, _propTypesDefault.default).string.isRequired,
-    name: (0, _propTypesDefault.default).string.isRequired
+    username: (0, _propTypesDefault.default).string.isRequired
 };
 UpdateUser.propTypes = {
     formData: (0, _propTypesDefault.default).object.isRequired,
