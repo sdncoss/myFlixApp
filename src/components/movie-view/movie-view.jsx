@@ -31,7 +31,7 @@ export const MovieView = ({ movies }) => {
         </Card.Body>
       </Card>
       <Link to={`/`}>
-        <button className="back-button" >Back</button>
+        <Button variant="primary" >Back</Button>
       </Link>
     </>
 
