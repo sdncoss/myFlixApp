@@ -42351,7 +42351,7 @@ const ProfileView = ({ localUser, movies, token })=>{
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
-                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(UserInfo, {
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUser.UserInfo), {
                                         name: user.username,
                                         email: user.email
                                     }, void 0, false, {

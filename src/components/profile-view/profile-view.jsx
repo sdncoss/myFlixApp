@@ -4,7 +4,7 @@ import { Button, Card, Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FavoriteMovies } from './user-favorites';
-import { UpdateUser } from "./update-user";
+import { UpdateUser, UserInfo } from "./update-user";
 
 export const ProfileView = ({ localUser, movies, token }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
