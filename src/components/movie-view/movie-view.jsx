@@ -21,23 +21,14 @@ export const MovieView = ({ movies }) => {
 
   return (
     <>
-      <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="movie-view">
-        <Card className="h-100" >
-          <Card.Img variant="top" src={movie.image} className="object-fit-cover" />
-          <Card.Body>
-            <Card.Title>Title: {movie.title}</Card.Title>
-            <Card.Text>About: {movie.description}</Card.Text>
-            <Card.Text>Genre: {movie.genre}</Card.Text>
-            <Card.Text>Director: {movie.director}</Card.Text>
-          </Card.Body>
-        </Card>
-      </Link>
-      <Card>
-        {isFavorite ? (
-          <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove</Button>
-        ) : (
-          <Button variant="primary" onClick={handleAddToFavorites}>Add</Button>
-        )}
+      <Card className="h-100" >
+        <Card.Img variant="top" src={movie.image} className="object-fit-cover" />
+        <Card.Body>
+          <Card.Title>Title: {movie.title}</Card.Title>
+          <Card.Text>About: {movie.description}</Card.Text>
+          <Card.Text>Genre: {movie.genre}</Card.Text>
+          <Card.Text>Director: {movie.director}</Card.Text>
+        </Card.Body>
       </Card>
       <Link to={`/`}>
         <button className="back-button" >Back</button>
