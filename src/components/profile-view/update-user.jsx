@@ -7,8 +7,8 @@ import Row from 'react-bootstrap/Row'
 export const UserInfo = ({ email, username }) => {
   return (
     <div>
-      <p>Username: {username.username} </p>
-      <p>Email: {username.email} </p>
+      <p>Username: {user.username} </p>
+      <p>Email: {user.email} </p>
     </div>
   )
 }
