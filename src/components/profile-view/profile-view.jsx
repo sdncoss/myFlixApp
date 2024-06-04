@@ -38,17 +38,14 @@ export const ProfileView = ({ localUser, movies, token }) => {
       .then((response) => {
         if (response.ok) {
           alert("Update successful");
-          window.location.reload();
-
-          return response.json()
+          return response.json();
         }
         alert("Update failed");
+        throw new Error("Update failed");
       })
-      .then((user) => {
-        if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          setUser(user)
-        }
+      .then((updatedUser) => {
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setUser(updatedUser);
       })
       .catch((error) => {
         console.error(error);
@@ -120,9 +117,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
           <Card.Body>
             <Card.Title>My Profile  </Card.Title>
             <Card.Text>
-              {
-                user && (<UserInfo name={user.username} email={user.email} />)
-              }
+              <UserInfo name={user.username} email={user.email} />
             </Card.Text>
           </Card.Body>
         </Card>
@@ -139,9 +134,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       </Row>
       <Row>
         <Col className="mb-5" xs={12} md={12}>
-          {
-            favoriteMovies && (<FavoriteMovies user={user} favoriteMovies={favoriteMovies} />)
-          }
+          <FavoriteMovies user={user} favoriteMovies={favoriteMovies} />
         </Col>
       </Row>
     </Container>
