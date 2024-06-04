@@ -117,7 +117,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
           <Card.Body>
             <Card.Title>My Profile  </Card.Title>
             <Card.Text>
-              <UserInfo name={user.username} email={user.email} />
+              {
+                user && (<UserInfo name={user.username} email={user.email} />)
+              }
             </Card.Text>
           </Card.Body>
         </Card>
@@ -134,7 +136,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
       </Row>
       <Row>
         <Col className="mb-5" xs={12} md={12}>
-          <FavoriteMovies user={user} favoriteMovies={favoriteMovies} />
+          {
+            favoriteMovies && (<FavoriteMovies user={user} favoriteMovies={favoriteMovies} />)
+          }
         </Col>
       </Row>
     </Container>
