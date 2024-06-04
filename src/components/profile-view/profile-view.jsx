@@ -116,11 +116,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
         <Card className="mb-5">
           <Card.Body>
             <Card.Title>My Profile  </Card.Title>
-            <Card.Text>
-              {
-                user && (<UserInfo name={user.username} email={user.email} />)
-              }
-            </Card.Text>
+            <Card.Text>{user.username}</Card.Text>
+            <Card.Text>{user.email}</Card.Text>
+            <Card.Text>{user.birthday}</Card.Text>
           </Card.Body>
         </Card>
         <Card className="mb-5">
@@ -136,9 +134,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
       </Row>
       <Row>
         <Col className="mb-5" xs={12} md={12}>
-          {
-            favoriteMovies && (<FavoriteMovies user={user} favoriteMovies={favoriteMovies} />)
-          }
+          {user && favoriteMovies.length > 0 ? (
+            <FavoriteMovies user={user} favoriteMovies={favoriteMovies} />
+          ) : (
+            <p>No favorite movies found.</p>
+          )}
         </Col>
       </Row>
     </Container>
