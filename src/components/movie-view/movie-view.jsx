@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const MovieView = ({ movies }) => {
-  const { movieId } = useParams();
+  const { movieID } = useParams();
 
   // Log movieId to check its value
-  console.log("Movie ID:", movieId);
+  console.log("Movie ID:", movieID);
   //find movie by id
-  const movie = movies.find((m) => m._id === movieId);
+  const movie = movies.find((m) => m._id === movieID);
 
   // Log movies to check their contents
   console.log("Movies:", movies);
@@ -19,34 +19,30 @@ export const MovieView = ({ movies }) => {
   }
 
   return (
-    <div>
-      <div>
-        <img src={movie.image} className="img-fluid  justify-content-md-center" alt="Movie Poster" />
-      </div>
-      <div>
-        <span style={{ fontWeight: 'bold' }}>Title: </span>
-        <span style={{ fontWeight: 'bold' }}>{movie.title}</span>
-      </div>
-      <div>
-        <span>Description: </span>
-        <span>{movie.description}</span>
-      </div>
-      <div>
-        <span>Genre: </span>
-        <span>{movie.genre}</span>
-      </div>
-      <div>
-        <span>Director: </span>
-        <span>{movie.director}</span>
-      </div>
-      <div>
-        <span>Featured: </span>
-        <span>{movie.featured ? "True" : "False"}</span>
-      </div>
+    <>
+      <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="movie-view">
+        <Card className="h-100" >
+          <Card.Img variant="top" src={movie.image} className="object-fit-cover" />
+          <Card.Body>
+            <Card.Title>Title: {movie.title}</Card.Title>
+            <Card.Text>About: {movie.description}</Card.Text>
+            <Card.Text>Genre: {movie.genre}</Card.Text>
+            <Card.Text>Director: {movie.director}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Link>
+      <Card>
+        {isFavorite ? (
+          <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove</Button>
+        ) : (
+          <Button variant="primary" onClick={handleAddToFavorites}>Add</Button>
+        )}
+      </Card>
       <Link to={`/`}>
         <button className="back-button" >Back</button>
       </Link>
-    </div>
+    </>
+
   );
 };
 
