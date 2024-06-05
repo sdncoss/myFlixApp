@@ -20,34 +20,58 @@ export const MovieView = ({ movies }) => {
   }
 
   return (
-    <>
-      <Card className="h-100" >
-        <Card.Img variant="top" src={movie.image} className="object-fit-cover" />
-        <Card.Body>
-          <Card.Title>Title: {movie.title}</Card.Title>
-          <Card.Text>About: {movie.description}</Card.Text>
-          <Card.Text>Genre: {movie.genre}</Card.Text>
-          <Card.Text>Director: {movie.director}</Card.Text>
-        </Card.Body>
-      </Card>
+    <div className="movie-info">
+      <div className="movie-info-container">
+        <div className="movie-image">
+          <img src={movie.image} width={500} className="image" />
+        </div>
+        <div className="movie-title">
+          <span className="movie-Header">Title: </span>
+          <span>{movie.title}</span>
+        </div>
+        <div>
+          <span className="movie-Header">Description: </span>
+          <span>{movie.description}</span>
+        </div>
+        <div>
+          <span className="movie-Header">Director: </span>
+          <span>{movie.director.name}</span>
+        </div>
+        <div>
+          <span className="movie-Header">Bio: </span>
+          <span>{movie.director.bio}</span>
+        </div>
+        <div>
+          <span classname="movie-Header">Birthday: </span>
+          <span>{movie.director.birthday}</span>
+        </div>
+        <div>
+          <span className="movie-Header">Deathday: </span>
+          <span>{movie.director.deathday}</span>
+        </div>
+        <div>
+          <span className="movie-Header">Genre: </span>
+          <span>{movie.genre}</span>
+        </div>
+      </div>
       <Link to={`/`}>
-        <Button variant="primary" >Back</Button>
+        <button className="back-button">Back button</button>
       </Link>
-    </>
-
+    </div>
   );
 };
 
-MovieView.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      image: PropTypes.string,
-      description: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      director: PropTypes.string.isRequired,
-      featured: PropTypes.bool.isRequired,
-    })
-  ).isRequired,
+MovieView.proptypes = {
+  movie: PropTypes.shape({
+    image: PropTypes.string,
+    title: PropTypes.string,
+    director: PropTypes.shape({
+      name: PropTypes.string,
+      bio: PropTypes.string,
+      birthday: PropTypes.string,
+      deathday: PropTypes.string,
+    }).isRequired,
+    description: PropTypes.string,
+    genre: PropTypes.string,
+  }).isRequired,
 };
