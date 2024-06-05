@@ -97,9 +97,9 @@ export const ProfileView = ({ localUser, movies, token }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setUser(data);
         console.log("User data fetched:", data);
         console.log("Profile Saved User: " + JSON.stringify(data));
+        setUser(data);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -111,12 +111,14 @@ export const ProfileView = ({ localUser, movies, token }) => {
   }, [user]);
 
   return (
-    <Container >
+    <Container>
       <Row>
         <Card className="mb-5">
           <Card.Body>
-            <Card.Title>My Profile  </Card.Title>
-            <UserInfo />
+            <Card.Title>My Profile</Card.Title>
+            <Card.Text>
+              {user && <UserInfo name={user.Username} email={user.Email} />}
+            </Card.Text>
           </Card.Body>
         </Card>
         <Card className="mb-5">
