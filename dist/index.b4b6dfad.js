@@ -27395,7 +27395,7 @@ const MainView = ()=>{
                                 lineNumber: 102,
                                 columnNumber: 23
                             }, void 0) : filteredMovies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                children: "The list is empty!"
+                                children: "Loading!"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 103,
@@ -27403,8 +27403,8 @@ const MainView = ()=>{
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
                                 children: filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                         className: "mb-5",
-                                        md: 3,
-                                        sm: 12,
+                                        md: 8,
+                                        xs: 2,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                             movie: movie,
                                             isFavorite: user.favoriteMovies && Array.isArray(user.favoriteMovies) && user.favoriteMovies.includes(movie.title)
@@ -27444,13 +27444,14 @@ const MainView = ()=>{
                                 lineNumber: 122,
                                 columnNumber: 47
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                xs: 2,
                                 md: 8,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
                                     movies: filteredMovies
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
                                     lineNumber: 123,
-                                    columnNumber: 31
+                                    columnNumber: 38
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
@@ -35033,7 +35034,7 @@ const MovieCard = ({ movie, isFavorite, onFavoriteChange })=>{
                 to: `/movies/${encodeURIComponent(movie.id)}`,
                 className: "movie-view",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-                    className: "h-60",
+                    className: "h-60 text-center",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                             variant: "top",

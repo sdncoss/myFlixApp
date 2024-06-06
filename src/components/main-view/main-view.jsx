@@ -100,10 +100,10 @@ export const MainView = () => {
             path="/"
             element={
               !user ? <Navigate to="/login" replace /> : (
-                filteredMovies.length === 0 ? <Col>The list is empty!</Col> : (
+                filteredMovies.length === 0 ? <Col>Loading!</Col> : (
                   <Row>
                     {filteredMovies.map((movie) => (
-                      <Col className="mb-5" key={movie.id} md={3} sm={12}>
+                      <Col className="mb-5" key={movie.id} md={8} xs={2}>
                         <MovieCard
                           movie={movie}
                           isFavorite={user.favoriteMovies && Array.isArray(user.favoriteMovies) && user.favoriteMovies.includes(movie.title)}
@@ -120,7 +120,7 @@ export const MainView = () => {
             element={
               !user ? <Navigate to="/login" replace /> : (
                 filteredMovies.length === 0 ? <Col>The list is empty!</Col> : (
-                  <Col md={8}><MovieView movies={filteredMovies} /></Col>
+                  <Col xs={2} md={8}><MovieView movies={filteredMovies} /></Col>
                 )
               )
             }
