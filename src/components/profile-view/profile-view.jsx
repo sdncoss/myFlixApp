@@ -4,29 +4,32 @@ import { Button, Card, Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FavoriteMovies } from './user-favorites';
-import { UpdateUser } from "./update-user";
+import { UpdateUser, UserInfo } from "./update-user";
 import { UserInfo } from "./user-info";
 
 export const ProfileView = ({ localUser, movies, token }) => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
 
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
-
+  const [username, setUsername] = useState(storedUser.username);
+  const [email, setEmail] = useState(storedUser.email);
+  const [password, setPassword] = useState(storedUser.password);
+  const [birthday, setBirthdate] = useState(storedUser.birthDate);
+  const [user, setUser] = useState();
   const favoriteMovies = user && user.favoriteMovies
     ? movies.filter(m => user.favoriteMovies.includes(m.title))
     : [];
 
-  if (!user) {
+  if (!storedUser) {
     return <div>Loading...</div>;
   }
 
 
+  const formData = {
+    Username: username,
+    Password: password,
+    Email: email,
+    Birthday: birthday
+  };
   const handleSubmit = (event) => {
     event.preventDefault(event);
     fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}`, {
@@ -101,13 +104,17 @@ export const ProfileView = ({ localUser, movies, token }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("User data fetched:", data);
+        console.log("Profile Saved User: " + JSON.stringify(data));
         setUser(data);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [token]);
+  }, [storedUser.username, token]);
 
+  useEffect(() => {
+    console.log("User state:", user); // Add this log
+  }, [user]);
 
   return (
     <Container>
@@ -116,14 +123,14 @@ export const ProfileView = ({ localUser, movies, token }) => {
           <Card.Body>
             <Card.Title>My Profile</Card.Title>
             <Card.Text>
-              <UserInfo username={user.Username} email={user.Email} />
+              <UserInfo username={username} email={email} />
             </Card.Text>
           </Card.Body>
         </Card>
         <Card className="mb-5">
           <Card.Body>
             <UpdateUser
-              formData={user}
+              formData={formData}
               handleUpdate={handleUpdate}
               handleSubmit={handleSubmit}
               handleDeleteAccount={handleDeleteAccount}
@@ -145,6 +152,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
 }
 
 ProfileView.propTypes = {
+  localUser: PropTypes.object.isRequired,
   movies: PropTypes.array.isRequired,
   token: PropTypes.string.isRequired
 };
