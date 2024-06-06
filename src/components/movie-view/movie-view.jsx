@@ -30,24 +30,24 @@ export const MovieView = ({ movies }) => {
           <span>{movie.title}</span>
         </div>
         <div>
-          <span className="movie-Header">Description: </span>
+          <span className="movie-Header">About: </span>
           <span>{movie.description}</span>
         </div>
         <div>
           <span className="movie-Header">Director: </span>
-          <span>{movie.director.name}</span>
+          <span>{movie.director}</span>
         </div>
         <div>
           <span className="movie-Header">Bio: </span>
-          <span>{movie.director.bio}</span>
+          <span>{movie.bio}</span>
         </div>
         <div>
           <span classname="movie-Header">Birthday: </span>
-          <span>{movie.director.birthday}</span>
+          <span>{movie.birthday}</span>
         </div>
         <div>
           <span className="movie-Header">Deathday: </span>
-          <span>{movie.director.deathday}</span>
+          <span>{movie.deathday}</span>
         </div>
         <div>
           <span className="movie-Header">Genre: </span>
@@ -55,7 +55,7 @@ export const MovieView = ({ movies }) => {
         </div>
       </div>
       <Link to={`/`}>
-        <button className="back-button">Back button</button>
+        <Button variant="outline-secondary">Back</Button>
       </Link>
     </div>
   );

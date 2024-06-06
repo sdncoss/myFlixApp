@@ -39,6 +39,9 @@ export const MainView = () => {
             image: movie.ImagePath,
             description: movie.Description,
             director: movie.Director?.Name || 'Unknown Director', // Safe access with fallback
+            bio: movie.Director?.Bio || 'Uknown Bio', //Safe access with fallback
+            birthyear: movie.Director?.Birthyear || 'Unknown Birthyear',
+            deathyear: movie.Director?.Deathyear || 'Unknown Deathyear',
             genre: movie.Genre?.Name || 'Unknown Genre', // Safe access with fallback
             featured: movie.Featured,
           };
