@@ -7,18 +7,20 @@ import { FavoriteMovies } from './user-favorites';
 import { UpdateUser } from "./update-user";
 import { UserInfo } from "./user-info";
 
-export const ProfileView = ({ localUser, movies, token }) => {
+export const ProfileView = ({ movies, token }) => {
 
-  const [user, setUser] = useState();
-  const favoriteMovies = user && user.favoriteMovies
-    ? movies.filter(m => user.favoriteMovies.includes(m.title))
-    : [];
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);
     }
   }, []);
+
+  const favoriteMovies = user && user.favoriteMovies
+    ? movies.filter(m => user.favoriteMovies.includes(m.title))
+    : [];
 
   if (!user) {
     return <div>Loading...</div>;
