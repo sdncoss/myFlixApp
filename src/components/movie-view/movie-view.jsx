@@ -11,7 +11,7 @@ export const MovieView = ({ movies }) => {
 
   useEffect(() => {
     fetch(
-      `https://my-flix-db-975de3fb6719.herokuapp.com/movies/${encodeURIComponent(movie.id)}`)
+      `https://my-flix-db-975de3fb6719.herokuapp.com/movies/:movieId`)
       .then((response) => response.json())
       .then((data) => {
         setMovie(data);

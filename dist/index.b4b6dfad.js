@@ -35053,7 +35053,7 @@ const MovieCard = ({ movie, isFavorite })=>{
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                             variant: "top",
                             src: movie.image,
-                            className: "object-fit-scale"
+                            className: "object-fit-contain"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
                             lineNumber: 94,
@@ -41859,7 +41859,7 @@ const MovieView = ({ movies })=>{
     const [movie, setMovie] = (0, _react.useState)(null);
     const [loading, setLoading] = (0, _react.useState)(true);
     (0, _react.useEffect)(()=>{
-        fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/movies/${encodeURIComponent(movie.id)}`).then((response)=>response.json()).then((data)=>{
+        fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/movies/:movieId`).then((response)=>response.json()).then((data)=>{
             setMovie(data);
         }).catch((error)=>console.error("Error fetching movie:", error));
     }, [
