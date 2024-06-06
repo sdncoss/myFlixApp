@@ -6,7 +6,7 @@ import { MovieCard } from '../movie-card/movie-card'
 //import { Link } from 'react-router-dom'
 
 export const FavoriteMovies = ({ user, favoriteMovies }) => {
-  if (!user || !user.FavoriteMovies) {
+  if (!favoriteMovies || favoriteMovies.length === 0) {
     return <div>No Favorite Movies</div>
   }
 
@@ -18,7 +18,7 @@ export const FavoriteMovies = ({ user, favoriteMovies }) => {
       <Row>
         {favoriteMovies.map((movie) => (
           <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-            <MovieCard movie={movie} isFavorite={user.favoriteMovies.includes(movie.id)} />
+            <MovieCard movie={movie} isFavorite={user.favoriteMovies.includes(movie.id)} onFavoriteChange={() => { }} />
           </Col>
         ))}
       </Row>
