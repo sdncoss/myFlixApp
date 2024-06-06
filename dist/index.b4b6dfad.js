@@ -41845,7 +41845,7 @@ const MovieView = ({ movies })=>{
         }
     }, [
         movies,
-        movieID
+        movieId
     ]);
     // Handle case where movie is not found
     if (!movie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {

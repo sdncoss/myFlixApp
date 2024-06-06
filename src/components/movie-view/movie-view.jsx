@@ -13,7 +13,7 @@ export const MovieView = ({ movies }) => {
       const foundMovie = movies.find((m) => m.id === movieId);
       setMovie(foundMovie);
     }
-  }, [movies, movieID]);
+  }, [movies, movieId]);
 
   // Handle case where movie is not found
   if (!movie) {
