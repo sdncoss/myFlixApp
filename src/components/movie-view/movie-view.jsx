@@ -8,10 +8,19 @@ export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   useEffect(() => {
     fetch(
-      `https://my-flix-db-975de3fb6719.herokuapp.com/movies/:movieId`)
+      `https://my-flix-db-975de3fb6719.herokuapp.com/movies/:movieId`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         setMovie(data);
