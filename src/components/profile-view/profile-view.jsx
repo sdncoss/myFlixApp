@@ -4,8 +4,8 @@ import { Button, Card, Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FavoriteMovies } from './user-favorites';
-import { UpdateUser, UserInfo } from "./update-user";
-import { UserInfo } from "./user-info";
+import { UpdateUser } from "./update-user";
+//import { UserInfo } from "./user-info";
 
 export const ProfileView = ({ localUser, movies, token }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -123,7 +123,10 @@ export const ProfileView = ({ localUser, movies, token }) => {
           <Card.Body>
             <Card.Title>My Profile</Card.Title>
             <Card.Text>
-              <UserInfo username={username} email={email} />
+              <div>
+                <p>Username: {username} </p>
+                <p>Email: {email} </p>
+              </div>
             </Card.Text>
           </Card.Body>
         </Card>
