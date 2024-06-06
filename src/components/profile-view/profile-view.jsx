@@ -4,21 +4,26 @@ import { Button, Card, Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FavoriteMovies } from './user-favorites';
-import { UpdateUser, UserInfo } from "./update-user";
+import { UpdateUser } from "./update-user";
+import { UserInfo } from "./user-info";
 
 export const ProfileView = ({ localUser, movies, token }) => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
 
   const [user, setUser] = useState();
   const favoriteMovies = user && user.favoriteMovies
     ? movies.filter(m => user.favoriteMovies.includes(m.title))
     : [];
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
 
-  if (!storedUser) {
+  if (!user) {
     return <div>Loading...</div>;
   }
 
-  const { email, username } = storedUser;
 
   const handleSubmit = (event) => {
     event.preventDefault(event);
@@ -113,7 +118,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
           <Card.Body>
             <Card.Title>My Profile</Card.Title>
             <Card.Text>
-              <UserInfo username={username} email={email} />
+              <UserInfo username={user.Username} email={user.Email} />
             </Card.Text>
           </Card.Body>
         </Card>

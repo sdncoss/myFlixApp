@@ -4,14 +4,6 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 
-export const UserInfo = ({ email, username }) => {
-  return (
-    <div>
-      <p>Username: {username} </p>
-      <p>Email: {email} </p>
-    </div>
-  )
-}
 
 export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount }) => {
   return (
@@ -69,11 +61,6 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
     </Row>
   )
 }
-
-UserInfo.propTypes = {
-  email: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired
-};
 
 UpdateUser.propTypes = {
   formData: PropTypes.object.isRequired,
