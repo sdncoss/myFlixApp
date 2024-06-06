@@ -121,7 +121,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       <Row>
         <Card className="mb-5">
           <Card.Body>
-            <Card.Title>My Profile</Card.Title>
+            <Card.Title className="m-auto">My Profile</Card.Title>
             <Card.Text>
               <div>
                 <p>Username: {formData.Username} </p>

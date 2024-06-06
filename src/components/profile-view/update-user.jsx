@@ -9,7 +9,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
   return (
     <Row>
       <Form onSubmit={handleSubmit}>
-        <h3>Update profile information</h3>
+        <h3 style={{ textAlign: "center" }}>Update Profile Information</h3>
         <Form.Group className='mb-2'>
           <Form.Label>Username:</Form.Label>
           <Form.Control
