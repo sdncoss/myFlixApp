@@ -9,89 +9,72 @@ export const MovieCard = ({ movie, isFavorite }) => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
-  const [addTitle, setAddTitle] = useState("");
-  const [delTitle, setDelTitle] = useState("");
 
-  useEffect(() => {
-    console.log("Adding to favorites:", movie.id);
-    const addToFavorites = () => {
-      fetch(
-        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+  const addToFavorites = () => {
+    fetch(
+      `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to add movie to favorites.");
         }
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to add movie to favorites.");
-          }
-          alert("Movie added to favorite!");
-          window.location.reload();
-          return response.json();
-        })
-        .then((user) => {
-          if (user) {
-            localStorage.setItem("user", JSON.stringify(user));
-            setUser(user);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    const removeFromFavorites = () => {
-      fetch(
-        `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+        alert("Movie added to favorite!");
+        return response.json();
+      })
+      .then((updatedUser) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(updatedUser);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const removeFromFavorites = () => {
+    fetch(
+      `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to remove movie from favorites.");
         }
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to remove movie from favorites.");
-          }
-          alert("Movie removed from favorites!");
-          window.location.reload();
-          return response.json();
-        })
-        .then((user) => {
-          if (user) {
-            localStorage.setItem("user", JSON.stringify(user));
-            setUser(user);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    if (addTitle) {
-      addToFavorites();
-    }
-    if (delTitle) {
-      removeFromFavorites();
-    }
-  }, [addTitle, delTitle, token]);
+        alert("Movie removed from favorites!");
+        return response.json();
+      })
+      .then((updatedUser) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(updatedUser);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const handleAddToFavorites = () => {
-    setAddTitle(movie.title);
+    addToFavorites();
   };
   const handleRemoveFromFavorites = () => {
-    setDelTitle(movie.title);
+    removeFromFavorites();
   };
 
   return (
     <>
       <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="movie-view">
         <Card className="h-100" >
-          <Card.Img variant="top" src={movie.image} className="object-fit-contain" />
+          <Card.Img variant="top" src={movie.image} className="object-fit-scale" />
           <Card.Body>
             <Card.Title>{movie.title}</Card.Title>
             <Card.Text>{movie.genre}</Card.Text>
@@ -120,5 +103,4 @@ MovieCard.propTypes = {
     director: PropTypes.string,
     featured: PropTypes.bool
   }).isRequired,
-  isFavorite: PropTypes.bool.isRequired,
 };
