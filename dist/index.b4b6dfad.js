@@ -42698,38 +42698,44 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _s = $RefreshSig$();
 const UserInfo = ({ email, username })=>{
+    _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const username = (0, _react.useState)(storedUser.username);
+    const email = (0, _react.useState)(storedUser.email);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Username: ",
-                    username,
+                    username.username,
                     " "
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 8,
+                lineNumber: 12,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Email: ",
-                    email,
+                    email.email,
                     " "
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 9,
+                lineNumber: 13,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/user-info.jsx",
-        lineNumber: 7,
+        lineNumber: 11,
         columnNumber: 5
     }, undefined);
 };
+_s(UserInfo, "Ungyo4N5uv5saq8Kqgc4SK48lCg=");
 _c = UserInfo;
 UserInfo.propTypes = {
     email: (0, _propTypesDefault.default).string.isRequired,
