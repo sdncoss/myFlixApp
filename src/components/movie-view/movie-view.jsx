@@ -1,3 +1,4 @@
+import Reach, { useEffect, useState } from 'react';
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
@@ -5,18 +6,21 @@ import PropTypes from "prop-types";
 
 export const MovieView = ({ movies }) => {
   const { movieID } = useParams();
+  const [movie, setMovie] = usState(null);
 
-  // Log movieId to check its value
-  console.log("Movie ID:", movieID);
-  //find movie by id
-  const movie = movies.find((m) => m.id === movieID);
-
-  // Log movies to check their contents
-  console.log("Movies:", movies);
+  useEffect(() => {
+    fetch(
+      `https://my-flix-db-975de3fb6719.herokuapp.com/movies/${encodeURIComponent(movie.id)}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMovie(data);
+      })
+      .catch((error) => console.error(error));
+  }, [movieId]);
 
   // Handle case where movie is not found
   if (!movie) {
-    return <div>Movie not found</div>;
+    return <div>Loading...</div>;
   }
 
   return (

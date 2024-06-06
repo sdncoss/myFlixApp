@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
 export const MovieCard = ({ movie, isFavorite }) => {
   const storedToken = localStorage.getItem("token");
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -92,7 +91,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
     <>
       <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="movie-view">
         <Card className="h-100" >
-          <Card.Img variant="top" src={movie.image} className="object-fit-none" />
+          <Card.Img variant="top" src={movie.image} className="object-fit-scale" />
           <Card.Body>
             <Card.Title>{movie.title}</Card.Title>
             <Card.Text>{movie.genre}</Card.Text>
@@ -101,9 +100,9 @@ export const MovieCard = ({ movie, isFavorite }) => {
       </Link>
       <Card>
         {isFavorite ? (
-          <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove</Button>
+          <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove from Favorites</Button>
         ) : (
-          <Button variant="primary" onClick={handleAddToFavorites}>Add</Button>
+          <Button variant="primary" onClick={handleAddToFavorites}>Add to Favorites</Button>
         )}
       </Card>
     </>
@@ -121,4 +120,5 @@ MovieCard.propTypes = {
     director: PropTypes.string,
     featured: PropTypes.bool
   }).isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };
