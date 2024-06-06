@@ -120,7 +120,7 @@ export const MainView = () => {
             element={
               !user ? <Navigate to="/login" replace /> : (
                 filteredMovies.length === 0 ? <Col>The list is empty!</Col> : (
-                  <Col xs={6} md={4} lg={2}><MovieView movies={filteredMovies} /></Col>
+                  <Col className="mb-5" xs={12} md={8} lg={6}><MovieView movies={filteredMovies} /></Col>
                 )
               )
             }
