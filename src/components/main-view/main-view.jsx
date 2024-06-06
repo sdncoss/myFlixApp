@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view"
 import { SignupView } from "../signup-view/signup-view";
 import { Row, Col } from "react-bootstrap";
+import PropTypes from "prop-types";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
@@ -14,9 +15,13 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [query, setQuery] = useState("");
 
+
+  // Filter movies based on the search query
+  const filteredMovies = movies.filter(movie =>
+    movie.title.toLowerCase().includes(query.toLowerCase())
+  );
 
   useEffect(() => {
     if (!token) {
@@ -74,7 +79,8 @@ export const MainView = () => {
     <BrowserRouter>
       <NavigationBar
         user={user}
-        query={searchQuery}
+        query={query}
+        setQuery={setQuery}
         handleSearch={handleSearch}
         onLoggedOut={() => {
           setUser(null);
@@ -139,4 +145,10 @@ export const MainView = () => {
       </Row>
     </BrowserRouter>
   );
+};
+
+MainView.propTypes = {
+  movies: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  onLoggedOut: PropTypes.func.isRequired
 };
