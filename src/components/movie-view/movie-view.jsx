@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 export const MovieView = ({ movies }) => {
   const { movieID } = useParams();
-  const [movie, setMovie] = usState(null);
+  const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     fetch(
