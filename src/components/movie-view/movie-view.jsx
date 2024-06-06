@@ -5,8 +5,15 @@ import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const MovieView = ({ movies }) => {
-  const { movieID } = useParams();
+  const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    if (movies) {
+      const foundMovie = movies.find((m) => m.id === movieId);
+      setMovie(foundMovie);
+    }
+  }, [movies, movieID]);
 
   // Handle case where movie is not found
   if (!movie) {
@@ -20,9 +27,9 @@ export const MovieView = ({ movies }) => {
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.description}</Card.Text>
         <Card.Text>{movie.genre}</Card.Text>
-        <Card.Text>{movie.director}</Card.Text>
-        <Card.Text>{movie.birthyear} - {movie.deathyear}</Card.Text>
-        <Card.Text>{movie.bio}</Card.Text>
+        <Card.Text>Director: {movie.director}</Card.Text>
+        <Card.Text>Birthyear {movie.birthyear} - Deathyear {movie.deathyear}</Card.Text>
+        <Card.Text>Bio: {movie.bio}</Card.Text>
       </Card.Body>
       <Link to={`/`}>
         <Button variant="outline-secondary">Back</Button>
