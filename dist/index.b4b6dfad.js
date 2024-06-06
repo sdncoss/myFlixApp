@@ -41855,7 +41855,7 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _s = $RefreshSig$();
 const MovieView = ({ movies })=>{
     _s();
-    const { movieID } = (0, _reactRouter.useParams)();
+    const { movieId } = (0, _reactRouter.useParams)();
     const [movie, setMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/movies/${encodeURIComponent(movie.id)}`).then((response)=>response.json()).then((data)=>{
@@ -42084,7 +42084,7 @@ const MovieView = ({ movies })=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MovieView, "266drzfDLlXKVi9Rf03FrJgfEWY=", false, function() {
+_s(MovieView, "sqjLqI6A1HBffP7G0nQ7aGjq+xM=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
