@@ -7,7 +7,7 @@ import { FavoriteMovies } from './user-favorites';
 import { UpdateUser } from "./update-user";
 import { UserInfo } from "./user-info";
 
-export const ProfileView = ({ movies, token }) => {
+export const ProfileView = ({ localUser, movies, token }) => {
 
   const [user, setUser] = useState(null);
 
@@ -107,7 +107,7 @@ export const ProfileView = ({ movies, token }) => {
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [storedUser.username, token]);
+  }, [user.username, token]);
 
   useEffect(() => {
     console.log("User state:", user); // Add this log
@@ -127,7 +127,7 @@ export const ProfileView = ({ movies, token }) => {
         <Card className="mb-5">
           <Card.Body>
             <UpdateUser
-              formData={storedUser}
+              formData={user}
               handleUpdate={handleUpdate}
               handleSubmit={handleSubmit}
               handleDeleteAccount={handleDeleteAccount}
@@ -149,7 +149,6 @@ export const ProfileView = ({ movies, token }) => {
 }
 
 ProfileView.propTypes = {
-  localUser: PropTypes.object.isRequired,
   movies: PropTypes.array.isRequired,
   token: PropTypes.string.isRequired
 };
