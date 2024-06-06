@@ -9,21 +9,17 @@ import { UpdateUser, UserInfo } from "./update-user";
 export const ProfileView = ({ localUser, movies, token }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
 
-  const [username, setUsername] = useState(storedUser.username);
-  const [email, setEmail] = useState(storedUser.email);
-  const [password, setPassword] = useState(storedUser.password);
-  const [birthday, setBirthdate] = useState(storedUser.birthDate);
   const [user, setUser] = useState();
   const favoriteMovies = user && user.favoriteMovies
     ? movies.filter(m => user.favoriteMovies.includes(m.title))
     : [];
 
-  const formData = {
-    Username: username,
-    Password: password,
-    Email: email,
-    Birthday: birthday
-  };
+  if (!storedUser) {
+    return <div>Loading...</div>;
+  }
+
+  const { email, username } = storedUser;
+
   const handleSubmit = (event) => {
     event.preventDefault(event);
     fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}`, {
@@ -124,7 +120,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         <Card className="mb-5">
           <Card.Body>
             <UpdateUser
-              formData={formData}
+              formData={storedUser}
               handleUpdate={handleUpdate}
               handleSubmit={handleSubmit}
               handleDeleteAccount={handleDeleteAccount}

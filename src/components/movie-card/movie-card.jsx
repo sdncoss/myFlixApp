@@ -73,7 +73,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
   return (
     <>
       <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="movie-view">
-        <Card className="h-100" >
+        <Card className="h-60" >
           <Card.Img variant="top" src={movie.image} className="object-fit-scale" />
           <Card.Body>
             <Card.Title>{movie.title}</Card.Title>
