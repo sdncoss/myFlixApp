@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Row } from "react-bootstrap";
+import { Form, Row, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 export const SearchBar = ({ query, handleSearch }) => {
