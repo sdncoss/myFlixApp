@@ -28,7 +28,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           </Nav>
           <Form className="d-flex">
             <SearchBar query={query} handleSearch={(e) => setQuery(e.target.value)} />
-
+            <Button variant="primary">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
