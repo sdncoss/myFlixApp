@@ -12,6 +12,7 @@ export const SearchBar = ({ query, handleSearch }) => {
         placeholder="Search"
         className="sm-2 mb-3"
       />
+      <Button variant="primary">Search</Button>
     </Row>
   );
 };

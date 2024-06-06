@@ -1,8 +1,11 @@
+import React, { useState } from "react";
 import { Navbar, Container, Nav, Form, FormControl, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { SearchBar } from "../search-bar/search-bar";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
+  const [query, setQuery] = useState("");
   return (
     <Navbar expand="lg">
       <Container>
@@ -24,13 +27,8 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             )}
           </Nav>
           <Form className="d-flex">
-            <FormControl
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="primary">Search</Button>
+            <SearchBar query={query} handleSearch={(e) => setQuery(e.target.value)} />
+
           </Form>
         </Navbar.Collapse>
       </Container>

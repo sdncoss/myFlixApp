@@ -121,11 +121,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
       <Row>
         <Card className="mb-5">
           <Card.Body>
-            <Card.Title className="m-auto">My Profile</Card.Title>
+            <Card.Title className="text-center">My Profile</Card.Title>
             <Card.Text>
               <div>
-                <p>Username: {formData.Username} </p>
-                <p>Email: {formData.Email} </p>
+                <p>Username: {username} </p>
+                <p>Email: {email} </p>
               </div>
             </Card.Text>
           </Card.Body>
