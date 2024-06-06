@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 
@@ -13,44 +14,20 @@ export const MovieView = ({ movies }) => {
   }
 
   return (
-    <div className="movie-info">
-      <div className="movie-info-container">
-        <div className="movie-image">
-          <img src={movie.image} width={100} className="image" />
-        </div>
-        <div className="movie-title">
-          <span className="movie-Header">Title: </span>
-          <span>{movie.title}</span>
-        </div>
-        <div>
-          <span className="movie-Header">About: </span>
-          <span>{movie.description}</span>
-        </div>
-        <div>
-          <span className="movie-Header">Director: </span>
-          <span>{movie.director}</span>
-        </div>
-        <div>
-          <span className="movie-Header">Bio: </span>
-          <span>{movie.bio}</span>
-        </div>
-        <div>
-          <span classname="movie-Header">Birthyear: </span>
-          <span>{movie.birthyear}</span>
-        </div>
-        <div>
-          <span className="movie-Header">Deathyear: </span>
-          <span>{movie.deathyear}</span>
-        </div>
-        <div>
-          <span className="movie-Header">Genre: </span>
-          <span>{movie.genre}</span>
-        </div>
-      </div>
+    <Card className="h-100" >
+      <Card.Img variant="top" src={movie.image} className="object-fit-scale" />
+      <Card.Body>
+        <Card.Title>{movie.title}</Card.Title>
+        <Card.Text>{movie.description}</Card.Text>
+        <Card.Text>{movie.genre}</Card.Text>
+        <Card.Text>{movie.director}</Card.Text>
+        <Card.Text>{movie.birthyear} - {movie.deathyear}</Card.Text>
+        <Card.Text>{movie.bio}</Card.Text>
+      </Card.Body>
       <Link to={`/`}>
         <Button variant="outline-secondary">Back</Button>
       </Link>
-    </div>
+    </Card>
   );
 };
 

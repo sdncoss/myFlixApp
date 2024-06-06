@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col'
 import { MovieCard } from '../movie-card/movie-card'
 //import { Link } from 'react-router-dom'
 
-export const FavoriteMovies = ({ user, favoritemMovies }) => {
-  if (!movies || !user || !user.FavoriteMovies) {
+export const FavoriteMovies = ({ user, favoriteMovies }) => {
+  if (!user || !user.FavoriteMovies) {
     return <div>No Favorite Movies</div>
   }
 
