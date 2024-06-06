@@ -92,7 +92,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       return;
     }
 
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${localUser.username}`, {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.username}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
@@ -104,7 +104,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [localUser.username, token]);
+  }, [storedUser.username, token]);
 
   useEffect(() => {
     console.log("User state:", user); // Add this log
@@ -133,7 +133,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         </Card>
       </Row>
       <Row>
-        <Col className="mb-5" xs={12} md={12}>
+        <Col className="mb-5" xs={12} md={8}>
           {user && favoriteMovies.length > 0 ? (
             <FavoriteMovies user={user} favoriteMovies={favoriteMovies} />
           ) : (

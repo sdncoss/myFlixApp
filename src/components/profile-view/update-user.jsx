@@ -5,10 +5,11 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 
 export const UserInfo = ({ email, username }) => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
   return (
     <div>
-      <p>Username: {username} </p>
-      <p>Email: {email} </p>
+      <p>Username: {storedUser.username} </p>
+      <p>Email: {storedUser.email} </p>
     </div>
   )
 }

@@ -9,7 +9,7 @@ export const MovieView = ({ movies }) => {
   // Log movieId to check its value
   console.log("Movie ID:", movieID);
   //find movie by id
-  const movie = movies.find((m) => m._id === movieID);
+  const movie = movies.find((m) => m.id === movieID);
 
   // Log movies to check their contents
   console.log("Movies:", movies);
@@ -23,7 +23,7 @@ export const MovieView = ({ movies }) => {
     <div className="movie-info">
       <div className="movie-info-container">
         <div className="movie-image">
-          <img src={movie.image} width={500} className="image" />
+          <img src={movie.image} width={100} className="image" />
         </div>
         <div className="movie-title">
           <span className="movie-Header">Title: </span>
@@ -42,12 +42,12 @@ export const MovieView = ({ movies }) => {
           <span>{movie.bio}</span>
         </div>
         <div>
-          <span classname="movie-Header">Birthday: </span>
-          <span>{movie.birthday}</span>
+          <span classname="movie-Header">Birthyear: </span>
+          <span>{movie.birthyear}</span>
         </div>
         <div>
-          <span className="movie-Header">Deathday: </span>
-          <span>{movie.deathday}</span>
+          <span className="movie-Header">Deathyear: </span>
+          <span>{movie.deathyear}</span>
         </div>
         <div>
           <span className="movie-Header">Genre: </span>
@@ -68,8 +68,8 @@ MovieView.proptypes = {
     director: PropTypes.shape({
       name: PropTypes.string,
       bio: PropTypes.string,
-      birthday: PropTypes.string,
-      deathday: PropTypes.string,
+      birthyear: PropTypes.string,
+      deathyear: PropTypes.string,
     }).isRequired,
     description: PropTypes.string,
     genre: PropTypes.string,
