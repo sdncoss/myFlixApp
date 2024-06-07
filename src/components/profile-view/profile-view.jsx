@@ -32,7 +32,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault(event);
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}`, {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
