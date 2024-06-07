@@ -77,7 +77,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
   }
 
   const handleDeleteAccount = () => {
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users`, {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
