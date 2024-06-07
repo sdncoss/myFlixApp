@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import { MovieCard } from '../movie-card/movie-card'
 //import { Link } from 'react-router-dom'
 
-export const FavoriteMovies = ({ user, favoriteMovies }) => {
+export const FavoriteMovies = ({ user, favoriteMovies, onFavoriteChange }) => {
   if (!favoriteMovies || favoriteMovies.length === 0) {
     return <div>No Favorite Movies</div>
   }
@@ -18,7 +18,7 @@ export const FavoriteMovies = ({ user, favoriteMovies }) => {
       <Row>
         {favoriteMovies.map((movie) => (
           <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-            <MovieCard movie={movie} isFavorite={user.favoriteMovies.includes(movie.id)} onFavoriteChange={() => { }} />
+            <MovieCard movie={movie} isFavorite={user.favoriteMovies.includes(movie.id)} onFavoriteChange={onFavoriteChange} />
           </Col>
         ))}
       </Row>
@@ -29,4 +29,5 @@ export const FavoriteMovies = ({ user, favoriteMovies }) => {
 FavoriteMovies.propTypes = {
   favoriteMovies: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
+  onFavoriteChange: PropTypes.func.isRequired,
 };

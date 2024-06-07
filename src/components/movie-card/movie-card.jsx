@@ -65,12 +65,6 @@ export const MovieCard = ({ movie, isFavorite, onFavoriteChange }) => {
       });
   };
 
-  const handleAddToFavorites = () => {
-    addToFavorites();
-  };
-  const handleRemoveFromFavorites = () => {
-    removeFromFavorites();
-  };
 
   return (
     <>
@@ -85,9 +79,9 @@ export const MovieCard = ({ movie, isFavorite, onFavoriteChange }) => {
       </Link>
       <Card>
         {isFavorite ? (
-          <Button variant="primary" onClick={handleRemoveFromFavorites}>Remove from Favorites</Button>
+          <Button variant="primary" onClick={removeFromFavorites}>Remove from Favorites</Button>
         ) : (
-          <Button variant="primary" onClick={handleAddToFavorites}>Add to Favorites</Button>
+          <Button variant="primary" onClick={addToFavorites}>Add to Favorites</Button>
         )}
       </Card>
     </>

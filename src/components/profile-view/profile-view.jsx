@@ -27,7 +27,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       return;
     }
 
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}/movies/${encodeURIComponent(movie.id)}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
@@ -137,9 +137,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
       });
   }, [storedUser, token]);
 
-  useEffect(() => {
-    console.log("User state:", user); // Add this log
-  }, [user]);
+  const handleFavoriteChange = (updatedFavoriteMovies) => {
+    setFavoriteMovies(
+      movies.filter((movie) => updatedFavoriteMovies.includes(movie._id))
+    );
+  };
 
   return (
     <Container>
@@ -170,7 +172,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       <Row>
         <Col className="mb-5" xs={12} md={8}>
           {user && favoriteMovies.length > 0 ? (
-            <FavoriteMovies user={user} favoriteMovies={favoriteMovies} />
+            <FavoriteMovies user={user} favoriteMovies={favoriteMovies} onFavoriteChange={handleFavoriteChange} />
           ) : (
             <p>No favorite movies found.</p>
           )}
