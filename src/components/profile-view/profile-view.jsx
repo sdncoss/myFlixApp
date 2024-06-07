@@ -32,7 +32,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault(event);
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.username}`, {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -76,7 +76,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
   }
 
   const handleDeleteAccount = () => {
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

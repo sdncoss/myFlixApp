@@ -55,7 +55,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
           onClick={() => handleDeleteAccount()}
           variant="outline-secondary"
           className="mx-3" >
-          Delete account
+          Delete Account
         </Button>
       </Form>
     </Row>
