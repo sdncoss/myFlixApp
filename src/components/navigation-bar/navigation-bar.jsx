@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../search-bar/search-bar";
 
-export const NavigationBar = ({ user, onLoggedOut, query, setQuery }) => {
+export const NavigationBar = ({ user, onLoggedOut, query, handleSearch }) => {
   return (
     <Navbar expand="lg">
       <Container>
@@ -26,7 +26,7 @@ export const NavigationBar = ({ user, onLoggedOut, query, setQuery }) => {
             )}
           </Nav>
           <Form className="d-flex">
-            <SearchBar query={query} handleSearch={(e) => setQuery(e.target.value)} />
+            <SearchBar query={query} handleSearch={handleSearch} />
 
           </Form>
         </Navbar.Collapse>
@@ -39,5 +39,5 @@ NavigationBar.propTypes = {
   user: PropTypes.object,
   onLoggedOut: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
-  setQuery: PropTypes.func.isRequired
+  handleSearch: PropTypes.func.isRequired
 };
