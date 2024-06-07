@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FavoriteMovies } from './user-favorites';
 import { UpdateUser } from "./update-user";
-//import { UserInfo } from "./user-info";
+
 
 export const ProfileView = ({ localUser, movies, token }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +15,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
   const [password, setPassword] = useState(storedUser.password);
   const [birthday, setBirthdate] = useState(storedUser.birthDate);
   const [user, setUser] = useState();
+
   const favoriteMovies = user && user.favoriteMovies
     ? movies.filter(m => user.favoriteMovies.includes(m.title))
     : [];
@@ -34,7 +35,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
     event.preventDefault(event);
     fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
       method: "PUT",
-      body: JSON.stringify(data),
+      body: JSON.stringify(formData),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
@@ -59,19 +60,22 @@ export const ProfileView = ({ localUser, movies, token }) => {
   };
 
   const handleUpdate = (e) => {
-    switch (e.target.type) {
+    const { type, value } = e.target;
+    switch (type) {
       case "text":
-        setUsername(e.target.value);
+        setUsername(value);
         break;
       case "email":
-        setEmail(e.target.value);
+        setEmail(value);
         break;
       case "password":
-        setPassword(e.target.value);
+        setPassword(value);
         break;
       case "date":
-        setBirthdate(e.target.value);
+        setBirthdate(value);
+        break;
       default:
+        break;
     }
   }
 
@@ -94,23 +98,24 @@ export const ProfileView = ({ localUser, movies, token }) => {
   };
 
   useEffect(() => {
-    if (!token) {
+    if (!token || !storedUser) {
       return;
     }
 
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.username}`, {
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("User data fetched:", data);
-        console.log("Profile Saved User: " + JSON.stringify(data));
         setUser(data);
+        setUsername(data.Username);
+        setEmail(data.Email);
+        setBirthdate(data.Birthday);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [storedUser.username, token]);
+  }, [storedUser, token]);
 
   useEffect(() => {
     console.log("User state:", user); // Add this log
