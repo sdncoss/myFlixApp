@@ -41,11 +41,11 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteA
             required
           />
         </Form.Group>
-        <Form.Group className='mb-4'>
-          <Form.Label>Birthdate:</Form.Label>
+        <Form.Group className='mb-2'>
+          <Form.Label>Birthday:</Form.Label>
           <Form.Control
             type="date"
-            value={formData.birthday ? formData.birthday.slice(0, 10) : ""}
+            value={formData.birthday}
             onChange={(e) => handleUpdate(e)}
             required
           />

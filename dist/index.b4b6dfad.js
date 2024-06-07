@@ -42552,10 +42552,10 @@ const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount 
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                    className: "mb-4",
+                    className: "mb-2",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                            children: "Birthdate:"
+                            children: "Birthday:"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/update-user.jsx",
                             lineNumber: 45,
@@ -42563,7 +42563,7 @@ const UpdateUser = ({ formData, handleUpdate, handleSubmit, handleDeleteAccount 
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                             type: "date",
-                            value: formData.birthday ? formData.birthday.slice(0, 10) : "",
+                            value: formData.birthday,
                             onChange: (e)=>handleUpdate(e),
                             required: true
                         }, void 0, false, {
