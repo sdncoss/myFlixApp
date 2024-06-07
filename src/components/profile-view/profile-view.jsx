@@ -15,14 +15,36 @@ export const ProfileView = ({ localUser, movies, token }) => {
   const [password, setPassword] = useState(storedUser.password);
   const [birthday, setBirthdate] = useState(storedUser.birthDate);
   const [user, setUser] = useState();
-
-  const favoriteMovies = user && user.favoriteMovies
-    ? movies.filter(m => user.favoriteMovies.includes(m.title))
-    : [];
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   if (!storedUser) {
     return <div>Loading...</div>;
   }
+
+  // adds to favorite movies list 
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("User data fetched:", data);
+        setUser(data);
+
+        const userFavoriteMovies = data.favoriteMovies
+          ? movies.filter(movie => data.favoriteMovies.includes(movie._id))
+          : [];
+        setFavoriteMovies(userFavoriteMovies);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [token, storedUser.Username, movies]);
+
 
 
   const formData = {
@@ -31,6 +53,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
     Email: email,
     Birthday: birthday
   };
+  //triggers submit button
   const handleSubmit = (event) => {
     event.preventDefault(event);
     fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
@@ -58,7 +81,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         console.error(error);
       });
   };
-
+  //updates user input
   const handleUpdate = (e) => {
     switch (e.target.type) {
       case "text":
@@ -75,7 +98,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       default:
     }
   }
-
+  //deletes account
   const handleDeleteAccount = () => {
     fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
       method: "DELETE",
@@ -93,7 +116,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       }
     });
   };
-
+  //updates profile information 
   useEffect(() => {
     if (!token || !storedUser) {
       return;
@@ -128,6 +151,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
               <div>
                 <p>Username: {username} </p>
                 <p>Email: {email} </p>
+                <p>Birthday: {birthday} </p>
               </div>
             </Card.Text>
           </Card.Body>
