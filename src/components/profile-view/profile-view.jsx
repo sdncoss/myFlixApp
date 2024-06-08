@@ -30,6 +30,31 @@ export const ProfileView = ({ localUser, movies, token }) => {
     Email: email,
     Birthday: birthday
   };
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("User data fetched:", data);
+        setUser(data);
+
+        const userFavoriteMovies = data.favoriteMovies
+          ? movies.filter(movie => data.favoriteMovies.includes(movie._id))
+          : [];
+        setFavoriteMovies(userFavoriteMovies);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [token, storedUser.Username, movies]);
+
+
   //triggers submit button
   const handleSubmit = (event) => {
     event.preventDefault(event);
