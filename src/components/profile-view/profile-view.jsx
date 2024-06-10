@@ -16,7 +16,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
   const [password, setPassword] = useState(storedUser.password);
   const [birthday, setBirthdate] = useState(storedUser.birthDate);
   const [user, setUser] = useState();
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
+
 
   if (!storedUser) {
     return <div>Loading...</div>;
@@ -100,50 +100,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       });
   }, [storedUser, token]);
 
-  useEffect(() => {
-    if (!token) {
-      return;
-    }
 
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("User data fetched:", data);
-        setUser(data);
-
-        // Log favorite movies from user data
-        console.log("Fetched FavoriteMovies:", data.FavoriteMovies);
-
-        // Log type of FavoriteMovies IDs
-        data.FavoriteMovies.forEach(id => {
-          console.log("Favorite Movie ID type:", typeof id);
-        });
-
-        const userFavoriteMovies = data.favoriteMovies
-          ? movies.filter(movie => {
-            console.log("Comparing movie ID:", movie.id, "with FavoriteMovies ID:", data.FavoriteMovies);
-            return data.FavoriteMovies.includes(movie.id);
-          })
-          : [];
-        setFavoriteMovies(userFavoriteMovies);
-
-        // Log the filtered favorite movies
-        console.log("Filtered FavoriteMovies:", userFavoriteMovies);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
-  }, [token, storedUser.Username, movies]);
-
-  const handleFavoriteChange = (updatedFavoriteMovies) => {
-    const userFavoriteMovies = movies.filter((movie) => updatedFavoriteMovies.includes(movie.id));
-    setFavoriteMovies(userFavoriteMovies);
-
-    // Log the updated favorite movies
-    console.log("Updated FavoriteMovies:", userFavoriteMovies);
-  };
 
   return (
     <Container>
@@ -176,7 +133,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       </Row>
       <Row>
         <Col className="mb-5">
-          <FavoriteMovies user={user} favoriteMovies={favoriteMovies} onFavoriteChange={handleFavoriteChange} />
+          <FavoriteMovies user={user} movies={movies} />
         </Col>
       </Row>
     </Container>
