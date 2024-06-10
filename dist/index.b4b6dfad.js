@@ -35107,7 +35107,7 @@ MovieCard.propTypes = {
     isFavorite: (0, _propTypesDefault.default).bool.isRequired,
     onFavoriteChange: (0, _propTypesDefault.default).func,
     movie: (0, _propTypesDefault.default).shape({
-        _id: (0, _propTypesDefault.default).string.isRequired,
+        id: (0, _propTypesDefault.default).string.isRequired,
         title: (0, _propTypesDefault.default).string.isRequired,
         image: (0, _propTypesDefault.default).string.isRequired,
         description: (0, _propTypesDefault.default).string,
@@ -42220,8 +42220,8 @@ const ProfileView = ({ localUser, movies, token })=>{
                 console.log("Favorite Movie ID type:", typeof id);
             });
             const userFavoriteMovies = data.favoriteMovies ? movies.filter((movie)=>{
-                console.log("Comparing movie ID:", movie._id, "with FavoriteMovies ID:", data.FavoriteMovies);
-                return data.FavoriteMovies.includes(movie._id.toString());
+                console.log("Comparing movie ID:", movie.id, "with FavoriteMovies ID:", data.FavoriteMovies);
+                return data.FavoriteMovies.includes(movie.id.toString());
             }) : [];
             setFavoriteMovies(userFavoriteMovies);
             // Log the filtered favorite movies
@@ -42240,7 +42240,7 @@ const ProfileView = ({ localUser, movies, token })=>{
         // Log type of movie._id
         movies.forEach((movie)=>{
             console.log("Movie:", movie);
-            console.log("Movie ID type:", typeof movie._id);
+            console.log("Movie ID type:", typeof movie.id);
         });
     }, [
         movies
@@ -42322,7 +42322,7 @@ const ProfileView = ({ localUser, movies, token })=>{
         token
     ]);
     const handleFavoriteChange = (updatedFavoriteMovies)=>{
-        const userFavoriteMovies = movies.filter((movie)=>updatedFavoriteMovies.includes(movie._id.toString()));
+        const userFavoriteMovies = movies.filter((movie)=>updatedFavoriteMovies.includes(movie.id.toString()));
         setFavoriteMovies(userFavoriteMovies);
         // Log the updated favorite movies
         console.log("Updated FavoriteMovies:", userFavoriteMovies);

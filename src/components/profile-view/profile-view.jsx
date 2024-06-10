@@ -54,8 +54,8 @@ export const ProfileView = ({ localUser, movies, token }) => {
 
         const userFavoriteMovies = data.favoriteMovies
           ? movies.filter(movie => {
-            console.log("Comparing movie ID:", movie._id, "with FavoriteMovies ID:", data.FavoriteMovies);
-            return data.FavoriteMovies.includes(movie._id.toString());
+            console.log("Comparing movie ID:", movie.id, "with FavoriteMovies ID:", data.FavoriteMovies);
+            return data.FavoriteMovies.includes(movie.id.toString());
           })
           : [];
         setFavoriteMovies(userFavoriteMovies);
@@ -75,7 +75,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
     // Log type of movie._id
     movies.forEach(movie => {
       console.log("Movie:", movie);
-      console.log("Movie ID type:", typeof movie._id);
+      console.log("Movie ID type:", typeof movie.id);
     });
   }, [movies]);
 
@@ -165,7 +165,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
   }, [storedUser, token]);
 
   const handleFavoriteChange = (updatedFavoriteMovies) => {
-    const userFavoriteMovies = movies.filter((movie) => updatedFavoriteMovies.includes(movie._id.toString()));
+    const userFavoriteMovies = movies.filter((movie) => updatedFavoriteMovies.includes(movie.id.toString()));
     setFavoriteMovies(userFavoriteMovies);
 
     // Log the updated favorite movies

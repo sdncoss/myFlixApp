@@ -92,7 +92,7 @@ MovieCard.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   onFavoriteChange: PropTypes.func,
   movie: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string,
