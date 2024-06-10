@@ -1,64 +1,36 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Button, Card, Container } from 'react-bootstrap';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import react from "react";
+import { UserInfo } from './user-info';
+import { Link } from 'react-router-dom';
 import { FavoriteMovies } from './user-favorites';
 import { UpdateUser } from "./update-user";
+import { UserDelete } from './user-delete';
 
 
-export const ProfileView = ({ user, movies }) => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-
-  const [username, setUsername] = useState(storedUser.username);
-  const [email, setEmail] = useState(storedUser.email);
-  const [password, setPassword] = useState(storedUser.password);
-  const [birthday, setBirthdate] = useState(storedUser.birthDate);
-  const [user, setUser] = useState();
-
-  if (!storedUser) {
-    return <div>Loading...</div>;
+export const ProfileView = ({ movies, user }) => {
+  if (!user) {
+    return <div>User data not available</div>;
   }
-
-
-
+  const { Username, Email, Birthday, Password } = user;
 
   return (
-    <Container>
-      <Row>
-        <Card className="mb-5">
-          <Card.Body>
-            <Card.Title className="text-center">My Profile</Card.Title>
-            <Card.Text>
-              <div>
-                <p>Username: {username} </p>
-                <p>Email: {email} </p>
-              </div>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card className="mb-5">
-          <Card.Body>
-            <UpdateUser
-              formData={formData}
-              handleUpdate={handleUpdate}
-              handleSubmit={handleSubmit}
-            />
-            <UserDelete handleDeleteAccount={handleDeleteAccount} />
-          </Card.Body>
-        </Card>
-      </Row>
-      <Row>
-        <Col className="mb-5" xs={12} md={8}>
-          <FavoriteMovies movies={movies} user={user} />
-        </Col>
-      </Row>
-    </Container>
-  )
-}
-
-ProfileView.propTypes = {
-  localUser: PropTypes.object.isRequired,
-  movies: PropTypes.array.isRequired,
-  token: PropTypes.string.isRequired
+    <div className="profile-view-container">
+      <div className="user-info">
+        <UserInfo
+          name={user.Username}
+          email={user.Email}
+          birthday={user.Birthday}
+          password={user.Password}
+        />
+      </div>
+      <div className="user-update">
+        <UpdateUser />
+      </div>
+      <div className="user-delete">
+        <UserDelete />
+      </div>
+      <div className="favorite-movies">
+        <FavoriteMovies movies={movies} user={user} />
+      </div>
+    </div>
+  );
 };

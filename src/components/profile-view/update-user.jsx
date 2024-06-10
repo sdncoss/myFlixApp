@@ -1,8 +1,7 @@
-import React from 'react'
-import PropTypes from "prop-types"
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Form, Button } from 'react-bootstrap/Form';
+
 
 
 export const UpdateUser = () => {
@@ -62,54 +61,58 @@ export const UpdateUser = () => {
       alert("Update failed");
     }
   };
-
-
-
   return (
-    <Row>
-      <Form onSubmit={handleSubmit}>
-        <h3 style={{ textAlign: "center" }}>Update Profile Information</h3>
-        <Form.Group className='mb-2'>
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            type="text"
-            minLength={4}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className='mb-2'>
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            minLength={8}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </Form.Group >
-        <Form.Group className='mb-2'>
-          <Form.Label> Email: </Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className='mb-2'>
-          <Form.Label>Birthday:</Form.Label>
-          <Form.Control
-            type="date"
-            value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" >Submit Changes</Button>
-      </Form>
-    </Row>
+    <Form onSubmit={handleSubmit} >
+      <div>
+        <h1>Update User Information</h1>
+      </div>
+      <Form.Group controlId="formUsername" className="userNameGroup">
+        <Form.Label>Username</Form.Label>
+        <Form.Control
+          className="inputUser"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="3"
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formPassword" className="userNameGroup">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          className="inputUser"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formEmail" className="userNameGroup">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          className="inputUser"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBirthday" className="userNameGorup">
+        <Form.Label>Birthday</Form.Label>
+        <Form.Control
+          className="inputUser"
+          type="date"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+          required
+        />
+      </Form.Group>
+      <Button variant="primary" onSubmit={handleSubmit}>
+        Submit
+      </Button>
+    </Form>
   );
 };
-
