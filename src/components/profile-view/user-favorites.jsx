@@ -32,8 +32,3 @@ export const FavoriteMovies = ({ movies, user }) => {
   );
 };
 
-FavoriteMovies.propTypes = {
-  favoriteMovies: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired,
-  onFavoriteChange: PropTypes.func.isRequired,
-};
