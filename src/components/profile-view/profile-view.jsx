@@ -143,9 +143,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
   }, [storedUser, token]);
 
   const handleFavoriteChange = (updatedFavoriteMovies) => {
-    setFavoriteMovies(
-      movies.filter((movie) => updatedFavoriteMovies.includes(movie._id))
-    );
+    const userFavoriteMovies = movies.filter((movie) => updatedFavoriteMovies.includes(movie._id));
+    setFavoriteMovies(userFavoriteMovies);
+
+    // Log the updated favorite movies
+    console.log("Updated FavoriteMovies:", userFavoriteMovies);
   };
 
   return (
