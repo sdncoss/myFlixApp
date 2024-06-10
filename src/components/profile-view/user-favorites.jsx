@@ -23,7 +23,7 @@ export const FavoriteMovies = ({ movies, user }) => {
       </Col>
       <Row>
         {favoriteMovies.map((movie) => (
-          <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
+          <Col key={movie.id} md={4} xs={6} lg={3}>
             <MovieCard movie={movie} />
           </Col>
         ))}
