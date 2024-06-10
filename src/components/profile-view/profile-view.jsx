@@ -131,7 +131,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
         </Card>
       </Row>
       <Row>
-        <Col className="mb-5" xs={12} md={8}>
+        <Col className="mb-5" md={4} xs={6} lg={2}>
           <FavoriteMovies user={user} movies={movies} />
         </Col>
       </Row>
