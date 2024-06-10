@@ -17,10 +17,14 @@ export const MainView = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
 
+  const handleToggleFavorite = (movieId, isFavorite) => {
+    console.log(`Toggle favorite for movie with ID ${movieId} (${isFavorite ? 'Add to favorites' : 'Remove from favorites'})`)
+  }
+
+
 
   useEffect(() => {
     if (!token) {
-      console.log("No token, skipping fetch.");
       return;
     }
 
@@ -106,7 +110,7 @@ export const MainView = () => {
                       <Col className="mb-5" key={movie.id} md={4} xs={6} lg={2}>
                         <MovieCard
                           movie={movie}
-                          isFavorite={user.favoriteMovies && Array.isArray(user.favoriteMovies) && user.favoriteMovies.includes(movie.title)}
+                          onToggleFavorite={handleToggleFavorite}
                         />
                       </Col>
                     ))}

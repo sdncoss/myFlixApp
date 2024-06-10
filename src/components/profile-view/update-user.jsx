@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 
 
-export const UserUpdate = () => {
+export const UpdateUser = () => {
   const [storedUser, setStoredUser] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
