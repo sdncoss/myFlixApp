@@ -31,7 +31,9 @@ export const MovieCard = ({ movie, isFavorite, onFavoriteChange }) => {
       .then((user) => {
         localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
-        onFavoriteChange(user.FavoriteMovies);
+        const updatedFavoriteMovies = user.FavoriteMovies;
+        const isMovieFavorite = updatedFavoriteMovies.includes(movie.id);
+        onFavoriteChange(isMovieFavorite, updatedFavoriteMovies);
       })
       .catch((error) => {
         console.error(error);
@@ -58,7 +60,9 @@ export const MovieCard = ({ movie, isFavorite, onFavoriteChange }) => {
       .then((user) => {
         localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
-        onFavoriteChange(user.FavoriteMovies);
+        const updatedFavoriteMovies = user.FavoriteMovies;
+        const isMovieFavorite = updatedFavoriteMovies.includes(movie.id);
+        onFavoriteChange(isMovieFavorite, updatedFavoriteMovies);
       })
       .catch((error) => {
         console.error(error);
@@ -100,6 +104,4 @@ MovieCard.propTypes = {
     director: PropTypes.string,
     featured: PropTypes.bool
   }).isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  onFavoriteChange: PropTypes.func,
 };
