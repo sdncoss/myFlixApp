@@ -44,8 +44,14 @@ export const ProfileView = ({ localUser, movies, token }) => {
         console.log("User data fetched:", data);
         setUser(data);
 
+        // Log favorite movies from user data
+        console.log("Fetched FavoriteMovies:", data.FavoriteMovies);
+
         const userFavoriteMovies = data.favoriteMovies
-          ? movies.filter(movie => data.favoriteMovies.includes(movie._id.toString()))
+          ? movies.filter(movie => {
+            console.log("Comparing movie ID:", movie._id, "with FavoriteMovies ID:", data.FavoriteMovies);
+            return data.FavoriteMovies.includes(movie._id.toString());
+          })
           : [];
         setFavoriteMovies(userFavoriteMovies);
 
