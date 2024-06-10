@@ -47,6 +47,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
         // Log favorite movies from user data
         console.log("Fetched FavoriteMovies:", data.FavoriteMovies);
 
+        // Log type of FavoriteMovies IDs
+        data.FavoriteMovies.forEach(id => {
+          console.log("Favorite Movie ID type:", typeof id);
+        });
+
         const userFavoriteMovies = data.favoriteMovies
           ? movies.filter(movie => {
             console.log("Comparing movie ID:", movie._id, "with FavoriteMovies ID:", data.FavoriteMovies);
@@ -62,6 +67,16 @@ export const ProfileView = ({ localUser, movies, token }) => {
         console.error("Error fetching user data:", error);
       });
   }, [token, storedUser.Username, movies]);
+
+  useEffect(() => {
+    // Log movies array
+    console.log("Movies array:", movies);
+
+    // Log type of movie._id
+    movies.forEach(movie => {
+      console.log("Movie ID type:", typeof movie._id);
+    });
+  }, [movies]);
 
 
   //triggers submit button
