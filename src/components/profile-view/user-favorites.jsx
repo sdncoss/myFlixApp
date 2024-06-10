@@ -1,14 +1,20 @@
-import React from 'react'
-import PropTypes from "prop-types";
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { MovieCard } from '../movie-card/movie-card'
-//import { Link } from 'react-router-dom'
+import React from "react";
+import { Row, Col } from "react-bootstrap";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const FavoriteMovies = ({ user, favoriteMovies, onFavoriteChange }) => {
-  if (!favoriteMovies || favoriteMovies.length === 0) {
-    return <div>No Favorite Movies</div>
+export const FavoriteMovies = ({ movies, user }) => {
+  if (!movies || !user || !user.FavoriteMovies) {
+    return <div>No favorite movies available</div>;
   }
+
+  // Ensure that movies is an array
+  if (!Array.isArray(movies)) {
+    return <div>Invalid movies data</div>;
+  }
+
+  let favoriteMovies = movies.filter((movie) =>
+    user.FavoriteMovies.includes(movie.id)
+  );
 
   return (
     <Row>
@@ -18,9 +24,7 @@ export const FavoriteMovies = ({ user, favoriteMovies, onFavoriteChange }) => {
       <Row>
         {favoriteMovies.map((movie) => (
           <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-            <MovieCard movie={movie}
-              isFavorite={user.favoriteMovies.includes(movie.id)}
-              onFavoriteChange={onFavoriteChange} />
+            <MovieCard movie={movie} />
           </Col>
         ))}
       </Row>

@@ -1,8 +1,5 @@
-import React from 'react'
-import PropTypes from "prop-types"
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
+import React from 'react';
+import PropTypes from "prop-types";
 
 export const UserInfo = ({ email, username }) => {
   return (
@@ -10,5 +7,10 @@ export const UserInfo = ({ email, username }) => {
       <p>Username: {username} </p>
       <p>Email: {email} </p>
     </div>
-  )
-}
+  );
+};
+
+UserInfo.propTypes = {
+  email: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+};
