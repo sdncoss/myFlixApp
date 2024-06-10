@@ -7,6 +7,7 @@ export const FavoriteMovies = ({ movies, user }) => {
     return <div>No favorite movies available</div>;
   }
 
+
   // Ensure that movies is an array
   if (!Array.isArray(movies)) {
     return <div>Invalid movies data</div>;
