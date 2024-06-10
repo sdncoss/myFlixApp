@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap';
 
 
 
