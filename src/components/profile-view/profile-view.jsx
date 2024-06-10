@@ -74,6 +74,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
 
     // Log type of movie._id
     movies.forEach(movie => {
+      console.log("Movie:", movie);
       console.log("Movie ID type:", typeof movie._id);
     });
   }, [movies]);
