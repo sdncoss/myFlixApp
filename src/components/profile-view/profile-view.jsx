@@ -5,14 +5,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FavoriteMovies } from './user-favorites';
 import { UpdateUser } from "./update-user";
-import { UserDelete } from "./user-delete";
 
 
-export const ProfileView = ({ movies, user }) => {
-  if (!user) {
-    return <div>User data not available</div>;
+export const ProfileView = ({ user, movies }) => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
+  const [username, setUsername] = useState(storedUser.username);
+  const [email, setEmail] = useState(storedUser.email);
+  const [password, setPassword] = useState(storedUser.password);
+  const [birthday, setBirthdate] = useState(storedUser.birthDate);
+  const [user, setUser] = useState();
+
+  if (!storedUser) {
+    return <div>Loading...</div>;
   }
-  const { Username, Email, Birthday, Password } = user;
+
+
 
 
   return (
@@ -21,18 +29,22 @@ export const ProfileView = ({ movies, user }) => {
         <Card className="mb-5">
           <Card.Body>
             <Card.Title className="text-center">My Profile</Card.Title>
-            <UserInfo
-              name={user.Username}
-              email={user.Email}
-              birthday={user.Birthday}
-              password={user.Password}
-            />
+            <Card.Text>
+              <div>
+                <p>Username: {username} </p>
+                <p>Email: {email} </p>
+              </div>
+            </Card.Text>
           </Card.Body>
         </Card>
         <Card className="mb-5">
           <Card.Body>
-            <UpdateUser />
-            <UserDelete />
+            <UpdateUser
+              formData={formData}
+              handleUpdate={handleUpdate}
+              handleSubmit={handleSubmit}
+            />
+            <UserDelete handleDeleteAccount={handleDeleteAccount} />
           </Card.Body>
         </Card>
       </Row>
@@ -42,6 +54,11 @@ export const ProfileView = ({ movies, user }) => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
+ProfileView.propTypes = {
+  localUser: PropTypes.object.isRequired,
+  movies: PropTypes.array.isRequired,
+  token: PropTypes.string.isRequired
+};
