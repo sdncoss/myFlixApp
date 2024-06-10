@@ -7,9 +7,37 @@ export const MovieCard = ({ movie, onToggleFavorite }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isHovered, setIsHovered] = useState();
   const handleToggleFavorite = () => {
+    fetch(
+      `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to add movie to favorites.");
+        }
+        alert("Movie added to favorite!");
+        return response.json();
+      })
+      .then((user) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+        onFavoriteChange(user.FavoriteMovies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     setIsFavorite(!isFavorite);
     onToggleFavorite(movie.id, !isFavorite);
   };
+
+
+
   return (
     <Card
       className="movie-card"
@@ -28,7 +56,7 @@ export const MovieCard = ({ movie, onToggleFavorite }) => {
         <Card.Text className="movieGenre">{movie.genre}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Button variant="link" className="open-button">
-            Open
+            More Info
           </Button>
         </Link>
         <Button variant="primary" onClick={handleToggleFavorite}>
