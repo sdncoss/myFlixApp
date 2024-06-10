@@ -35028,7 +35028,7 @@ const MovieCard = ({ movie, isFavorite, onFavoriteChange })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: `/movies/${encodeURIComponent(movie.id)}`,
+                to: `/movies/${encodeURIComponent(movie._id)}`,
                 className: "movie-view",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
                     className: "h-60 text-center",
@@ -35107,7 +35107,7 @@ MovieCard.propTypes = {
     isFavorite: (0, _propTypesDefault.default).bool.isRequired,
     onFavoriteChange: (0, _propTypesDefault.default).func,
     movie: (0, _propTypesDefault.default).shape({
-        id: (0, _propTypesDefault.default).string.isRequired,
+        _id: (0, _propTypesDefault.default).string.isRequired,
         title: (0, _propTypesDefault.default).string.isRequired,
         image: (0, _propTypesDefault.default).string.isRequired,
         description: (0, _propTypesDefault.default).string,

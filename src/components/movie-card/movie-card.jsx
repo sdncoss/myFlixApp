@@ -68,7 +68,7 @@ export const MovieCard = ({ movie, isFavorite, onFavoriteChange }) => {
 
   return (
     <>
-      <Link to={`/movies/${encodeURIComponent(movie.id)}`} className="movie-view">
+      <Link to={`/movies/${encodeURIComponent(movie._id)}`} className="movie-view">
         <Card className="h-60 text-center" >
           <Card.Img variant="top" src={movie.image} className="object-fit-scale" />
           <Card.Body>
@@ -92,7 +92,7 @@ MovieCard.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   onFavoriteChange: PropTypes.func,
   movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string,
