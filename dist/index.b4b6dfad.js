@@ -35114,7 +35114,9 @@ MovieCard.propTypes = {
         genre: (0, _propTypesDefault.default).string,
         director: (0, _propTypesDefault.default).string,
         featured: (0, _propTypesDefault.default).bool
-    }).isRequired
+    }).isRequired,
+    isFavorite: (0, _propTypesDefault.default).bool.isRequired,
+    onFavoriteChange: (0, _propTypesDefault.default).func
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");
@@ -42340,17 +42342,6 @@ const ProfileView = ({ localUser, movies, token })=>{
                                                 fileName: "src/components/profile-view/profile-view.jsx",
                                                 lineNumber: 157,
                                                 columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                                children: [
-                                                    "Birthday: ",
-                                                    birthday,
-                                                    " "
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 158,
-                                                columnNumber: 17
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
@@ -42384,17 +42375,17 @@ const ProfileView = ({ localUser, movies, token })=>{
                                 handleDeleteAccount: handleDeleteAccount
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 165,
+                                lineNumber: 164,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 164,
+                            lineNumber: 163,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 163,
+                        lineNumber: 162,
                         columnNumber: 9
                     }, undefined)
                 ]
@@ -42408,29 +42399,23 @@ const ProfileView = ({ localUser, movies, token })=>{
                     className: "mb-5",
                     xs: 12,
                     md: 8,
-                    children: user && favoriteMovies.length > 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userFavorites.FavoriteMovies), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userFavorites.FavoriteMovies), {
                         user: user,
                         favoriteMovies: favoriteMovies,
                         onFavoriteChange: handleFavoriteChange
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 177,
-                        columnNumber: 13
-                    }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: "No favorite movies found."
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 179,
-                        columnNumber: 13
+                        lineNumber: 175,
+                        columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 175,
+                    lineNumber: 174,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 174,
+                lineNumber: 173,
                 columnNumber: 7
             }, undefined)
         ]

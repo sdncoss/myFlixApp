@@ -100,4 +100,6 @@ MovieCard.propTypes = {
     director: PropTypes.string,
     featured: PropTypes.bool
   }).isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  onFavoriteChange: PropTypes.func,
 };

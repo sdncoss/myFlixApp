@@ -155,7 +155,6 @@ export const ProfileView = ({ localUser, movies, token }) => {
               <div>
                 <p>Username: {username} </p>
                 <p>Email: {email} </p>
-                <p>Birthday: {birthday} </p>
               </div>
             </Card.Text>
           </Card.Body>
@@ -173,11 +172,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
       </Row>
       <Row>
         <Col className="mb-5" xs={12} md={8}>
-          {user && favoriteMovies.length > 0 ? (
-            <FavoriteMovies user={user} favoriteMovies={favoriteMovies} onFavoriteChange={handleFavoriteChange} />
-          ) : (
-            <p>No favorite movies found.</p>
-          )}
+          <FavoriteMovies user={user} favoriteMovies={favoriteMovies} onFavoriteChange={handleFavoriteChange} />
         </Col>
       </Row>
     </Container>
