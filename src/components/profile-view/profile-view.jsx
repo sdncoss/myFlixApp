@@ -60,23 +60,6 @@ export const ProfileView = ({ localUser, movies, token }) => {
           : [];
         setFavoriteMovies(userFavoriteMovies);
 
-        //temporary useEffects to find out why  movies arent being logged correctly
-        useEffect(() => {
-          console.log("Movies array:", movies);
-        }, [movies]);
-
-        useEffect(() => {
-          movies.forEach(movie => {
-            console.log("Movie ID:", movie.id);
-          });
-        }, [movies]);
-
-        useEffect(() => {
-          user.FavoriteMovies.forEach(id => {
-            console.log("Favorite Movie ID:", id);
-          });
-        }, [user.FavoriteMovies]);
-
         // Log the filtered favorite movies
         console.log("Filtered FavoriteMovies:", userFavoriteMovies);
       })
@@ -86,6 +69,23 @@ export const ProfileView = ({ localUser, movies, token }) => {
   }, [token, storedUser.Username, movies]);
 
 
+  //temporary useEffects to find out why  movies arent being logged correctly
+  useEffect(() => {
+    console.log("Movies array:", movies);
+  }, [movies]);
+
+  useEffect(() => {
+    movies.forEach(movie => {
+      console.log("Movie ID:", movie.id);
+    });
+  }, [movies]);
+  /*
+    useEffect(() => {
+      user.FavoriteMovies.forEach(id => {
+        console.log("Favorite Movie ID:", id);
+      });
+    }, [user.FavoriteMovies]);
+  */
 
   //triggers submit button
   const handleSubmit = (event) => {
