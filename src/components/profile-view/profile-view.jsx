@@ -44,10 +44,16 @@ export const ProfileView = ({ localUser, movies, token }) => {
         console.log("User data fetched:", data);
         setUser(data);
 
+        // Log the fetched data to ensure it's correct
+        console.log("Fetched FavoriteMovies:", data.FavoriteMovies);
+
         const userFavoriteMovies = data.favoriteMovies
           ? movies.filter(movie => data.favoriteMovies.includes(movie._id))
           : [];
         setFavoriteMovies(userFavoriteMovies);
+
+        // Log the filtered favorite movies
+        console.log("Filtered FavoriteMovies:", userFavoriteMovies);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
