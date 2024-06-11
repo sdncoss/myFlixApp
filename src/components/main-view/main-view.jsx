@@ -91,7 +91,7 @@ export const MainView = () => {
           <Route
             path="/signup"
             element={
-              user ? <Navigate to="/" /> : <Col md={5}><SignupView /></Col>
+              user ? <Navigate to="/login" /> : <Col md={5}><SignupView /></Col>
             }
           />
           <Route
