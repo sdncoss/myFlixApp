@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movie, onToggleFavorite }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isHovered, setIsHovered] = useState();
+
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
@@ -86,11 +86,7 @@ export const MovieCard = ({ movie, onToggleFavorite }) => {
 
 
   return (
-    <Card
-      className="movie-card"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <Card>
       <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
         <Card.Img
           variant="top"
@@ -109,9 +105,7 @@ export const MovieCard = ({ movie, onToggleFavorite }) => {
         <Button variant="primary" onClick={handleToggleFavorite}>
           {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </Button>
-        {isHovered && (
-          <div className="description-box">{movie.description}</div>
-        )}
+
       </Card.Body>
     </Card>
   );
