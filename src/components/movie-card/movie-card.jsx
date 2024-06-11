@@ -13,9 +13,9 @@ export const MovieCard = ({ movie, onToggleFavorite }) => {
 
   useEffect(() => {
     if (user && user.FavoriteMovies) {
-      setIsFavorite(user.FavoriteMovies.includes(movie._id));
+      setIsFavorite(user.FavoriteMovies.includes(movie.id));
     }
-  }, [user, movie._id]);
+  }, [user, movie.id]);
 
   const addToFavorites = () => {
     fetch(
@@ -67,7 +67,7 @@ export const MovieCard = ({ movie, onToggleFavorite }) => {
         localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
         setIsFavorite(false);
-        onToggleFavorite(movie._id, false);
+        onToggleFavorite(movie.id, false);
       })
       .catch((error) => {
         console.error(error);
