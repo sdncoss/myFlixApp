@@ -130,11 +130,11 @@ export const ProfileView = ({ localUser, movies, token }) => {
             <UserDelete />
           </Card.Body>
         </Card>
-      </Row>
-      <Row>
-        <Col className="mb-5">
-          <FavoriteMovies user={user} movies={movies} />
-        </Col>
+        <Card className="mb-5">
+          <Card.Body>
+            <FavoriteMovies user={user} movies={movies} />
+          </Card.Body>
+        </Card>
       </Row>
     </Container>
   )

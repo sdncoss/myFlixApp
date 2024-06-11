@@ -41,7 +41,7 @@ export const UserDelete = () => {
   };
   return (
     <div className="delete-user">
-      <h1 className="delete-account">Delete Account</h1>
+      <h3 className="delete-account" textAlign="center">Delete Account</h3>
       <p>{message}</p>
       <Button
         onClick={handleDelete}
