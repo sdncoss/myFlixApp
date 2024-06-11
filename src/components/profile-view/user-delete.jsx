@@ -23,6 +23,7 @@ export const UserDelete = () => {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${storedToken}`,
+            "Content-Type": "application/json"
           },
         }
       );
