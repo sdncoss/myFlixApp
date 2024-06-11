@@ -6,32 +6,40 @@ import { Link } from "react-router-dom";
 export const MovieCard = ({ movie, onToggleFavorite }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isHovered, setIsHovered] = useState();
-  const handleToggleFavorite = () => {
-    fetch(
-      `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to add movie to favorites.");
-        }
-        alert("Movie added to favorite!");
-        return response.json();
-      })
-      .then((user) => {
-        localStorage.setItem("user", JSON.stringify(user));
-        setUser(user);
-        onFavoriteChange(user.FavoriteMovies);
+
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("User data fetched:", data);
+        setUser(data);
+
+        const userFavoriteMovies = data.isFavorite
+          ? movie.filter(movie => {
+            console.log("Comparing movie ID:", movie.id, "with isFavorite ID:", data.FavoriteMovies);
+            return data.isFavorite.includes(movie.id);
+          })
+          : [];
+        setIsFavorite(userFavoriteMovies);
+
+        // Log the filtered favorite movies
+        console.log("Filtered FavoriteMovies:", userFavoriteMovies);
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error fetching user data:", error);
       });
+  }, [token, storedUser.Username, movie]);
+
+
+
+  const handleToggleFavorite = () => {
     setIsFavorite(!isFavorite);
     onToggleFavorite(movie.id, !isFavorite);
   };
