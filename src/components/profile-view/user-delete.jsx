@@ -42,6 +42,7 @@ export const UserDelete = () => {
   return (
     <div className="delete-user">
       <h3 className="delete-account" textAlign="center">Delete Account</h3>
+      <p>We are sorry to see you go!</p>
       <p>{message}</p>
       <Button
         onClick={handleDelete}

@@ -125,7 +125,7 @@ export const ProfileView = ({ localUser, movies, token }) => {
             />
           </Card.Body>
         </Card>
-        <Card>
+        <Card className="mb-5">
           <Card.Body>
             <UserDelete />
           </Card.Body>
