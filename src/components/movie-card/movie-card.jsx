@@ -12,39 +12,75 @@ export const MovieCard = ({ movie, onToggleFavorite }) => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
   useEffect(() => {
-    if (!token) {
-      return;
+    if (user && user.FavoriteMovies) {
+      setIsFavorite(user.FavoriteMovies.includes(movie._id));
     }
+  }, [user, movie._id]);
 
-    fetch(`https://my-flix-db-975de3fb6719.herokuapp.com/users/${storedUser.Username}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("User data fetched:", data);
-        setUser(data);
-
-        const userFavoriteMovies = data.isFavorite
-          ? movie.filter(movie => {
-            console.log("Comparing movie ID:", movie.id, "with isFavorite ID:", data.FavoriteMovies);
-            return data.isFavorite.includes(movie.id);
-          })
-          : [];
-        setIsFavorite(userFavoriteMovies);
-
-        // Log the filtered favorite movies
-        console.log("Filtered FavoriteMovies:", userFavoriteMovies);
+  const addToFavorites = () => {
+    fetch(
+      `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to add movie to favorites.");
+        }
+        alert("Movie added to favorite!");
+        return response.json();
+      })
+      .then((user) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+        setIsFavorite(true);
+        onToggleFavorite(movie.id, true);
       })
       .catch((error) => {
-        console.error("Error fetching user data:", error);
+        console.error(error);
       });
-  }, [token, storedUser.Username, movie]);
-
+  };
+  const removeFromFavorites = () => {
+    fetch(
+      `https://my-flix-db-975de3fb6719.herokuapp.com/users/${user.Username}/movies/${encodeURIComponent(movie.id)}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to remove movie from favorites.");
+        }
+        alert("Movie removed from favorites!");
+        return response.json();
+      })
+      .then((user) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+        setIsFavorite(false);
+        onToggleFavorite(movie._id, false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
 
   const handleToggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    onToggleFavorite(movie.id, !isFavorite);
+    if (isFavorite) {
+      removeFromFavorites();
+    } else {
+      addToFavorites();
+    }
   };
 
 
