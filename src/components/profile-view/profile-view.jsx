@@ -11,7 +11,7 @@ import { UserDelete } from './user-delete'
 export const ProfileView = ({ localUser, movies, token }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
 
-  const [username, setUsername] = useState(storedUser.username);
+  const [username, setUsername] = useState(storedUser.Username);
   const [email, setEmail] = useState(storedUser.email);
   const [password, setPassword] = useState(storedUser.password);
   const [birthday, setBirthdate] = useState(storedUser.birthDate);
