@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 export const MovieCard = ({ movie, onToggleFavorite }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isHovered, setIsHovered] = useState();
-  const [username, setUsername] = useState(storedUser.username);
-  const [user, setUser] = useState();
 
 
   useEffect(() => {
