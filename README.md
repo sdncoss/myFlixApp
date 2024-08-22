@@ -1,4 +1,4 @@
-# myMovie App
+# myFlix App
 
 ## Project description
 The client-side for an app called myMovie based on its existing server-side code (REST API and database).
@@ -12,15 +12,15 @@ The client-side for an app called myMovie based on its existing server-side code
 * React-Bootstrap-Icons
 * Prop-Types
 * Moment
-* Parcel/Transformer-Sass (v.2.10.2)
-* Parcel (v.2.10.2)
+* Parcel/Transformer-Sass 
+* Parcel 
 * Process
 
 ## The API the project uses
-movie_api (https://github.com/IsabelWen/movie_api/tree/main)
+movie_api (https://github.com/sdncoss/movie_api)
 
 ## Link to app 
-Hosted on Netlify: https://mymovie-api.netlify.app/
+Hosted on Netlify: https://movieflixappforyou.netlify.app/
 
 ## Views
 ### Login View
